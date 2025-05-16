@@ -1,0 +1,49 @@
+.button {
+  padding: 10px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  color: black; 
+}
+
+.transparent {
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.transparent:hover {
+  background-color: #fdb6d93d; 
+}
+
+.transparent:active {
+  background-color: #ff83c167; 
+}
+
+.blue {
+  background-color: #ADD8E6; 
+  color: black; 
+  border: none; 
+}
+
+.blue:hover {
+  background-color: #87CEEB; 
+}
+
+.blue:active {
+  background-color: #6495ED; 
+}
+
+.icon {
+  background-color: transparent;
+  color: #555;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon:hover {
+  background-color: #f0f0f0;
+}

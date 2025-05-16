@@ -1,0 +1,169 @@
+/* components/ForumPage/ForumPage.module.css */
+.forumContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центруємо секції по горизонталі */
+  padding-bottom: 40px; /* Додамо трохи відступу знизу */
+}
+
+/* Стилі для першої секції - Головний екран */
+.heroSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px;
+  color: #000000; /* Колір тексту на фоні */
+  width: 100vw;
+  margin-bottom: 40px; /* Відступ між секціями */
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.heroText {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./userProfileImage.jpg'); /* Замініть шлях на ваше зображення */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4; 
+  z-index: -1; 
+}
+
+
+/* components/ForumPage/ForumPage.module.css */
+
+.storiesSection {
+  display: flex;
+  gap: 30px; /* Збільшимо відступ між колонками */
+  margin-top: 30px;
+  width: 100%;
+  max-width: 900px; /* Збільшимо максимальну ширину */
+  margin-left: auto;
+  margin-right: auto; /* Центруємо секцію на сторінці */
+}
+
+.topicsColumn {
+  flex: 0 0 200px; /* Фіксована ширина для колонки тематик */
+}
+
+.topicsTitle {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.topicsList {
+  list-style: none;
+  padding: 0;
+}
+
+.topicItem {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer; /* Додамо курсор для візуального зворотного зв'язку */
+  transition: color 0.2s ease; /* Додамо плавний перехід кольору */
+}
+
+.topicItem:hover {
+  color: #87CEEB; /* Змінюємо колір при наведенні */
+}
+
+.storiesColumn {
+  flex: 1; /* Колонка історій займе решту доступного простору */
+}
+
+.storiesTitle {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* ... решта стилів для карток історій ... */
+
+.storyCard {
+  background-color: #edb3db29;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.authorPhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.authorName {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.authorEmail {
+  color: #777;
+}
+
+.storyTitle {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.storyText {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.storyMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.storyTopic {
+  background-color: #87CEEB;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.storyActions {
+  display: flex;
+  gap: 10px;
+}
+
+.commentForm {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.commentForm textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-height: 50px;
+}

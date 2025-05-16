@@ -1,0 +1,104 @@
+.footer {
+  background-image: url('/footer.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: black;
+  width: 100vw;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  max-width: 1180px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.leftSection {
+  flex: 1;
+}
+
+.logo h1 {
+  font-size: 24px;
+  color: black;
+  margin: 0;
+}
+
+.navigation {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 60px;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  color: black;
+  position: relative; 
+  padding-bottom: 5px; 
+  transition: color 0.3s ease; 
+}
+
+.navigation ul li a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px; 
+  background-color: black; 
+  transition: width 0.3s ease; 
+}
+
+.navigation ul li a:hover::before {
+  width: 100%; 
+}
+
+.navigation ul li a:active {
+  color: #aa7799; 
+}
+
+.rightSection {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 20px;
+}
+
+.socialLink {
+  display: block;
+}
+
+.socialIcon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.socialIcon:hover {
+  transform: scale(1.2);
+}
+
+.copyright {
+  color: black;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 20px;
+}

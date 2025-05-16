@@ -1,0 +1,49 @@
+.userSection {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  max-width: 900px;
+  padding: 40px 20px;
+  background-color: #edb3db29;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+  margin-bottom: 40px;
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profileImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+  border: 2px solid #ddd;
+}
+
+.userInfo {
+  text-align: left;
+}
+
+.userLogin {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.userEmail {
+  color: #777;
+}
+
+.userNavigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 15px;
+  width: 100%;
+}

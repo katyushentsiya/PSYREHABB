@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  position: relative;
+  min-height: calc(100vh - 80px); /* Припускаємо, що висота хедера 60px */
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.containerMobile {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.mainBlock {
+  width: 55%;
+  margin-top: 0; /* Прибираємо початковий великий відступ */
+  text-align: left;
+}
+
+.mainBlockMobile {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.mainBlock h2 {
+  font-size: 48px;
+  line-height: 1.2;
+  color: #333;
+}
+
+.mainBlockMobile h2 {
+  font-size: 32px;
+}
+
+.mainBlock p {
+  margin-top: 0;
+  margin-bottom: 50px;
+  width: 100%;
+  text-align: right;
+  font-size: 24px;
+  line-height: 1.5;
+  color: #555;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mainBlockMobile p {
+  text-align: center;
+  font-size: 18px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 30px;
+}
+
+.mainBlock button {
+  width: 215px;
+  font-size: 24px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.mainBlockMobile button {
+  width: 150px;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  background-image: url('/main.jpg');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  z-index: -1;
+}
+
+.requestButtonLink {
+  text-decoration: none; /* Щоб прибрати підкреслення у Link */
+}
+

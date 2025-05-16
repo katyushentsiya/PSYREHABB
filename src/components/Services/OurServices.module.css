@@ -1,0 +1,81 @@
+.servicesSection {
+  background-color: #edb3db29;
+  padding: 60px 20px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.container h2 {
+  font-size: 2.8em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(65, 63, 63, 0.558);
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  min-height: 220px;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.imageContainer {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  padding-bottom: 10px; 
+}
+
+.title {
+  font-size: 1.4em;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  text-align: left;
+}
+
+
+
+
+
+

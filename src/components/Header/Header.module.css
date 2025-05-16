@@ -1,0 +1,84 @@
+.header {
+  /* Основні стилі хедера */
+  background-image: url('/background-header.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat;
+  height: 80px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 20px; /* Зменшено відступи з боків для кращої адаптивності */
+  color: black; /* Колір тексту за замовчуванням */
+  position: fixed; /* Фіксуємо хедер у верхній частині вікна */
+  top: 0;
+  left: 0; /* Займає всю ширину від лівого краю */
+  width: 100%; /* Займає всю ширину */
+  z-index: 10; /* Забезпечує відображення поверх іншого контенту */
+}
+
+/* Обмеження ширини хедера на великих екранах та центрування */
+.headerWrapper {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+.leftSection {
+  margin-left: 10%; 
+  flex-shrink: 0; 
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 24px;
+  color: black;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  margin-left: auto; 
+  flex-shrink: 0; 
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 80px;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  color: black;
+  position: relative; 
+  padding-bottom: 5px; 
+  transition: color 0.3s ease; 
+}
+
+.navigation ul li a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px; 
+  background-color: black; 
+  transition: width 0.3s ease; 
+}
+
+.navigation ul li a:hover::before {
+  width: 100%; 
+}
+
+.navigation ul li a:active {
+  color: #aa7799; /* Зміна кольору при натисканні */
+}
+
+.rightSection {
+  margin-left: auto; 
+  margin-right: 10%; 
+}
+
