@@ -1,3 +1,4 @@
+/* src/components/DiaryEmotionsPage/DiaryEmotionsPage.module.css */
 .diaryEmotionsContainer {
   display: flex;
   flex-direction: column;
@@ -36,28 +37,29 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./userProfileImage.jpg'); /* Замініть шлях на ваше зображення */
+  background-image: url('/userProfileImage.jpg'); /* Замініть шлях на ваше зображення */
   background-size: cover;
   background-position: center;
-  opacity: 0.4; 
-  z-index: -1; 
+  opacity: 0.4;
+  z-index: -1;
 }
 
+/* Зміни для розміщення форми та тем у стовпчик, якщо вони не повинні бути поруч */
 .diaryFormSection {
   width: 100%;
   max-width: 900px;
   padding: 20px;
   border-radius: 5px;
   margin-top: 30px;
-  display: flex; /* Використовуємо flex для розміщення форми та тем поруч */
-  gap: 20px;
-  align-items: flex-start; /* Вирівнюємо елементи по верхньому краю */
+  /* display: flex;  Видаляємо flex, щоб вони розташовувалися один під одним */
+  /* gap: 20px; */
+  /* align-items: flex-start; */
 }
 
 .diaryForm {
   display: flex;
   flex-direction: column;
-  flex: 2; /* Форма займає більшу частину */
+  /* flex: 2; */ /* Видаляємо flex */
 }
 
 .formGroup {
@@ -86,17 +88,42 @@
 
 .topics {
   display: flex;
-  flex-direction: column; /* Розміщуємо теми у стовпчик */
-  flex: 1; /* Блок з темами займає меншу частину */
-  margin-top: 25px; /* Вирівнюємо початок списку тем */
+  flex-wrap: wrap; /* Дозволяємо переносити на наступний рядок */
+  gap: 10px; /* Відступ між тематиками */
+  margin-top: 15px; /* Вирівнюємо початок списку тем */
+  justify-content: flex-start; /* Вирівнюємо по лівому краю */
 }
 
 .topicOption {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */ /* Замінено на gap у .topics */
+  background-color: #f0f0f0; /* Легкий фон для опцій */
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.topicOption:hover {
+  background-color: #e0e0e0;
 }
 
 .topicOption input[type="radio"] {
-  margin-right: 5px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.topicOption label {
+  font-weight: normal; /* Прибираємо жирність, якщо вона була */
+  cursor: pointer;
+  margin-bottom: 0; /* Прибираємо зайвий margin */
+}
+
+/* Додайте ці стилі для стилізації кнопки, якщо вона не має стилю за замовчуванням з вашого Button компонента */
+.diaryForm button[type="submit"] {
+  margin-top: 20px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border-radius: 8px;
 }

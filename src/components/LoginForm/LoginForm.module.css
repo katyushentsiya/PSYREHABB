@@ -72,3 +72,12 @@
   border-color: #f4b9d7;
   box-shadow: 0 0 5px rgba(244, 185, 215, 0.5);
 }
+
+/* Додано: Стиль для повідомлення про помилку */
+.errorMessage {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -5px; /* Регулювання відступу */
+  margin-bottom: 15px;
+  text-align: center;
+}

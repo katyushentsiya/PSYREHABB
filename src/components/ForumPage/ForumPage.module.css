@@ -69,17 +69,27 @@
 .topicsList {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .topicItem {
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-  cursor: pointer; /* Додамо курсор для візуального зворотного зв'язку */
-  transition: color 0.2s ease; /* Додамо плавний перехід кольору */
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background-color: #f0f0f0; /* Додайте легкий фон */
+  text-align: center; /* Центруємо текст */
+  /* color буде задаватися інлайн в компоненті */
 }
 
 .topicItem:hover {
   color: #87CEEB; /* Змінюємо колір при наведенні */
+}
+
+.storyTopic {
+  font-weight: bold;
+  /* color буде задаватися інлайн в компоненті */
 }
 
 .storiesColumn {
@@ -90,8 +100,6 @@
   font-size: 1.5rem;
   margin-bottom: 15px;
 }
-
-/* ... решта стилів для карток історій ... */
 
 .storyCard {
   background-color: #edb3db29;
@@ -141,7 +149,7 @@
 }
 
 .storyTopic {
-  background-color: #87CEEB;
+  background-color: #edb3db29;
   color: #333;
   padding: 5px 10px;
   border-radius: 5px;
@@ -166,4 +174,55 @@
   border-radius: 4px;
   font-size: 1rem;
   min-height: 50px;
+}
+
+.expandButton {
+  background: none;
+  border: none;
+  color: #6495ED;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 0;
+  text-align: left;
+  margin-top: 8px;
+}
+
+.expandButton:hover {
+  text-decoration: underline;
+}
+
+/* НОВІ СТИЛІ ДЛЯ КОМЕНТАРІВ */
+.commentList {
+  margin-top: 15px;
+  border-top: 1px solid #eee; /* Роздільник між формою і коментарями */
+  padding-top: 15px;
+}
+
+.commentItem {
+  background-color: #ffffff; /* Світлий фон для кожного коментаря */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px 15px;
+  margin-bottom: 10px; /* Відстань між коментарями */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Легка тінь */
+}
+
+.commentAuthor {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px; /* Відстань між ім'ям та текстом */
+  display: block; /* Щоб текст коментаря починався з нового рядка */
+}
+
+.commentText {
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 5px; /* Відстань між текстом та датою */
+}
+
+.commentDate {
+  font-size: 0.85rem;
+  color: #888;
+  text-align: right; /* Дата по правій стороні */
+  display: block; /* Щоб дата була в окремому рядку */
 }

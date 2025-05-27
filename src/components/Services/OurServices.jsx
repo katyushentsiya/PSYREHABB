@@ -7,25 +7,25 @@ const OurServices = () => {
     {
       id: 1,
       title: 'Система оцінки психологічного стану користувачів',
-      image: '/PSYREHABB/test.png', // Оновлений шлях
+      image: '/test.png', 
       anchor: 'assessment',
     },
     {
       id: 2,
       title: 'Бібліотека інформаційних ресурсів',
-      image: '/PSYREHABB/educ.png', // Оновлений шлях
+      image: '/educ.png', 
       anchor: 'library',
     },
     {
       id: 3,
       title: 'Платформа для обміну досвідом',
-      image: '/PSYREHABB/forum.png', // Оновлений шлях
+      image: '/forum.png', 
       anchor: 'community',
     },
     {
       id: 4,
       title: 'Інструмент для ведення особистих записів',
-      image: '/PSYREHABB/emo.png', // Оновлений шлях
+      image: '/emo.png', 
       anchor: 'emotion',
     },
   ];

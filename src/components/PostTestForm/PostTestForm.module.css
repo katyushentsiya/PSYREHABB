@@ -1,0 +1,148 @@
+/* Оверлей для модального вікна */
+.modalOverlay {
+  position: fixed; /* Фіксоване позиціонування, щоб перекривати весь екран */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Напівпрозорий фон */
+  display: flex;
+  justify-content: center; /* Центрування по горизонталі */
+  align-items: center; /* Центрування по вертикалі */
+  z-index: 1000; /* Перекриття інших елементів */
+}
+
+.postTestFormContainer {
+  background-color: #fff; /* Білий фон, як на скріншоті модалки */
+  padding: 25px 35px; /* Відступи всередині форми */
+  border-radius: 8px; /* Заокруглені кути */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Більш виражена тінь */
+  max-width: 450px; /* Менша ширина, як у модального вікна входу */
+  width: 90%; /* Адаптивність для менших екранів */
+  position: relative; /* Для позиціонування кнопки закриття */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центруємо вміст */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 1.5rem; /* Розмір заголовка */
+  color: #333;
+  font-weight: 600; /* Жирніший шрифт */
+  margin: 0; /* Прибираємо зайві відступи */
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #555;
+}
+
+.formQuestion {
+  font-size: 1.1rem; /* Менший розмір шрифту для питання */
+  color: #555;
+  margin-bottom: 25px; /* Відступ під питанням */
+  line-height: 1.4;
+  text-align: center; /* Центруємо текст питання */
+}
+
+.optionsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Менший відступ між опціями */
+  margin-bottom: 25px; /* Відступ від групи опцій до кнопки */
+  width: 100%;
+  text-align: left;
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px; /* Менші відступи всередині опції */
+  border: 1px solid #ddd;
+  border-radius: 6px; /* Менш заокруглені кути */
+  background-color: #f9f9f9; /* Легкий сірий фон для опцій */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none; /* Прибираємо тінь з окремих опцій */
+}
+
+.optionLabel:hover {
+  background-color: #f0f0f0;
+  border-color: #a1c4fd;
+}
+
+.optionLabel input[type="radio"] {
+  margin-right: 12px; /* Менший відступ для радіо-баттона */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 18px; /* Менший розмір радіо-баттона */
+  height: 18px;
+  border: 2px solid #999;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.optionLabel input[type="radio"]:checked {
+  background-color: #7a9dfa;
+  border-color: #7a9dfa;
+}
+
+.optionLabel input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 8px; /* Менший кружечок */
+  height: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.optionText {
+  font-size: 1rem; /* Трохи менший розмір шрифту */
+  color: #555;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.submitButton {
+  margin-top: 15px; /* Відступ кнопки від форми */
+  padding: 10px 25px; /* Менший падінг кнопки */
+  font-size: 1rem; /* Менший шрифт кнопки */
+  min-width: 150px; /* Менша мінімальна ширина */
+  /* Стилі кнопки з модального вікна входу */
+  background-color: #a1c4fd; /* Блакитний колір */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #7a9dfa; /* Темніший блакитний при наведенні */
+}

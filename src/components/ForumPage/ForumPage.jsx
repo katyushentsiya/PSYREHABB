@@ -1,69 +1,232 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ForumPage.module.css';
 import UserProfile from '../UserProfile/UserProfile';
 import Button from '../Button/Button';
-import forumStoriesData from './forumStoriesData'; // Імпортуємо дані
+import { useNavigate } from 'react-router-dom';
 
-const ForumPage = () => {
-  const user = {
-    login: 'Tarabakina',
-    email: 'tarabyta@gmail.com',
-    profileImage: '/userProfileImage.jpg',
-  };
+const ForumPage = ({ forumStories }) => {
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(null);
+  const [stories, setStories] = useState([]);
 
-  const navigationItems = [
-    { label: 'Форум' },
-  ];
+  // Ініціалізуємо лайки: початкові з даних + лайки користувачів
+  const [likes, setLikes] = useState(() => {
+    const initialLikesData = {};
+    forumStories.forEach(story => {
+      initialLikesData[story.id] = story.initialLikes || 0;
+    });
 
-  const topics = ["Всі", "Особисті", "Травма", "Стрес", "Відновлення", "Адаптація", "Підтримка"];
-  const [selectedTopic, setSelectedTopic] = useState(null);
-  const [likes, setLikes] = useState({});
+    const storedUserLikes = JSON.parse(localStorage.getItem('userLikesCounts')) || {};
+    const mergedLikes = { ...initialLikesData }; // Копіюємо початкові лайки
+
+    // Додаємо лайки, які поставили користувачі, до початкових
+    // Це забезпечить коректне відображення при перезавантаженні
+    for (const storyId in storedUserLikes) {
+        // Якщо історія вже має початкові лайки, додаємо до них лайки користувачів.
+        // Якщо ні, просто встановлюємо кількість лайків користувачів.
+        mergedLikes[storyId] = (mergedLikes[storyId] || 0) + storedUserLikes[storyId];
+    }
+    return mergedLikes;
+  });
+
+  // Стан для відстеження, які історії поточний користувач лайкнув
+  const [userLikedStories, setUserLikedStories] = useState(() => {
+    const storedUserLikedState = JSON.parse(localStorage.getItem('userLikedStoriesState')) || {};
+    const currentLoggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))?.login || 'anonymous';
+    // Завантажуємо стан лайків саме для поточного користувача
+    return storedUserLikedState[currentLoggedInUser] || {};
+  });
+
+
   const [commentFormsVisible, setCommentFormsVisible] = useState({});
   const [comments, setComments] = useState({});
 
-  // Використовуємо імпортовані дані
+  const [allComments, setAllComments] = useState(() => {
+    const userStoredComments = JSON.parse(localStorage.getItem('userAddedForumComments')) || {};
+    const mergedComments = {};
+
+    forumStories.forEach(story => {
+      if (story.comments && story.comments.length > 0) {
+        mergedComments[story.id] = story.comments.map(comment => ({
+          author: comment.author,
+          text: comment.text,
+          date: comment.date || 'Дата невідома'
+        }));
+      }
+    });
+
+    for (const storyId in userStoredComments) {
+        if (mergedComments[storyId]) {
+            mergedComments[storyId] = [...mergedComments[storyId], ...userStoredComments[storyId]];
+        } else {
+            mergedComments[storyId] = userStoredComments[storyId];
+        }
+    }
+    return mergedComments;
+  });
+
+  const [selectedTopic, setSelectedTopic] = useState(null);
+  const [expandedStories, setExpandedStories] = useState({});
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('loggedInUser');
+    if (storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    } else {
+      navigate('/login');
+    }
+
+    const savedStories = JSON.parse(localStorage.getItem('userStories')) || [];
+    const combined = [...forumStories, ...savedStories];
+    setStories(combined);
+  }, [forumStories, navigate]);
+
+  // Зберігаємо стан лайків користувача (яку історію лайкнув/відлайкнув)
+  useEffect(() => {
+    if (currentUser) {
+        const currentLoggedInUser = currentUser.login || 'anonymous';
+        const allUsersLikedState = JSON.parse(localStorage.getItem('userLikedStoriesState')) || {};
+        allUsersLikedState[currentLoggedInUser] = userLikedStories;
+        localStorage.setItem('userLikedStoriesState', JSON.stringify(allUsersLikedState));
+    }
+  }, [userLikedStories, currentUser]);
+
+  // Зберігаємо змінені кількості лайків (які відрізняються від initialLikes)
+  // Цей useEffect буде запускатись після зміни 'likes'
+  useEffect(() => {
+    const userLikesCountsToSave = {};
+    forumStories.forEach(story => {
+        // Ми зберігаємо різницю між поточними лайками та початковими лайками з forumStoriesData.
+        // Це дозволяє нам відстежувати ЛИШЕ лайки, додані користувачами.
+        const initialCount = story.initialLikes || 0;
+        const currentCount = likes[story.id] || 0;
+        const userAddedCount = currentCount - initialCount;
+
+        if (userAddedCount !== 0) { // Зберігаємо тільки якщо є різниця
+            userLikesCountsToSave[story.id] = userAddedCount;
+        }
+    });
+    localStorage.setItem('userLikesCounts', JSON.stringify(userLikesCountsToSave));
+  }, [likes, forumStories]);
+
+
+  const allTopics = ['Всі', ...new Set(stories.map(story => story.topic).filter(topic => topic !== 'Особисті'))];
+
   const filteredStories = selectedTopic
-    ? forumStoriesData.filter((story) => story.topic === selectedTopic)
-    : forumStoriesData;
+    ? stories.filter(story => story.topic === selectedTopic)
+    : stories;
 
-  const handleTopicClick = (topic) => {
-    setSelectedTopic(topic === "Всі" ? null : topic);
+  const handleTopicClick = topic => {
+    setSelectedTopic(topic === 'Всі' ? null : topic);
   };
 
-  const handleLike = (storyId) => {
-    setLikes(prevLikes => ({
-      ...prevLikes,
-      [storyId]: (prevLikes[storyId] || 0) + 1,
-    }));
-    console.log(`Лайк історії ${storyId}`);
-  };
+  // Оновлена функція handleLike для перемикання лайка
+  const handleLike = storyId => {
+    if (!currentUser) {
+        alert('Будь ласка, увійдіть, щоб поставити лайк.');
+        return; // Забороняємо лайкати, якщо користувач не увійшов
+    }
 
-  const handleCommentClick = (storyId) => {
-    setCommentFormsVisible(prevVisibility => ({
-      ...prevVisibility,
-      [storyId]: !prevVisibility[storyId],
-    }));
-  };
+    const hasLiked = userLikedStories[storyId];
 
-  const handleCommentChange = (event, storyId) => {
-    setComments(prevComments => ({
-      ...prevComments,
-      [storyId]: event.target.value,
-    }));
-  };
-
-  const handlePostComment = (storyId) => {
-    const commentText = comments[storyId];
-    if (commentText) {
-      console.log(`Коментар до історії ${storyId}:`, commentText);
-      setComments(prevComments => ({ ...prevComments, [storyId]: '' }));
-      setCommentFormsVisible(prevVisibility => ({ ...prevVisibility, [storyId]: false }));
+    if (hasLiked) {
+      // Якщо користувач вже лайкнув - відлайкуємо
+      setLikes(prev => ({
+        ...prev,
+        [storyId]: Math.max(0, (prev[storyId] || 0) - 1) // Зменшуємо, але не менше 0
+      }));
+      setUserLikedStories(prev => ({
+        ...prev,
+        [storyId]: false // Позначаємо, що користувач відлайкував
+      }));
+    } else {
+      // Якщо користувач ще не лайкнув - лайкаємо
+      setLikes(prev => ({
+        ...prev,
+        [storyId]: (prev[storyId] || 0) + 1
+      }));
+      setUserLikedStories(prev => ({
+        ...prev,
+        [storyId]: true // Позначаємо, що користувач лайкнув
+      }));
     }
   };
 
+
+  const handleCommentClick = storyId => {
+    setCommentFormsVisible(prev => ({
+      ...prev,
+      [storyId]: !prev[storyId]
+    }));
+  };
+
+  const handleCommentChange = (e, storyId) => {
+    setComments(prev => ({
+      ...prev,
+      [storyId]: e.target.value
+    }));
+  };
+
+  const handlePostComment = storyId => {
+    const commentText = comments[storyId]?.trim();
+    if (!commentText) return;
+
+    const newComment = {
+      author: currentUser.login || currentUser.name || 'Анонім',
+      text: commentText,
+      date: new Date().toLocaleString()
+    };
+
+    const updatedComments = {
+      ...allComments,
+      [storyId]: [...(allComments[storyId] || []), newComment]
+    };
+    setAllComments(updatedComments);
+
+    const userAddedCommentsToSave = {};
+    for (const id in updatedComments) {
+        const fixedStoryComments = forumStories.find(s => s.id === parseInt(id))?.comments || [];
+        userAddedCommentsToSave[id] = updatedComments[id].filter(comment =>
+            !fixedStoryComments.some(fixedC =>
+                fixedC.author === comment.author && fixedC.text === comment.text && fixedC.date === comment.date
+            )
+        );
+        if (userAddedCommentsToSave[id].length === 0) {
+            delete userAddedCommentsToSave[id];
+        }
+    }
+    localStorage.setItem('userAddedForumComments', JSON.stringify(userAddedCommentsToSave));
+
+    setComments(prev => ({ ...prev, [storyId]: '' }));
+    setCommentFormsVisible(prev => ({ ...prev, [storyId]: false }));
+  };
+
+  const toggleExpand = storyId => {
+    setExpandedStories(prev => ({
+      ...prev,
+      [storyId]: !prev[storyId]
+    }));
+  };
+
+  const topicColors = {
+    'Травма': '#FF6B6B',
+    'Стрес': '#FFD166',
+    'Відновлення': '#06D6A0',
+    'Адаптація': '#118AB2',
+    'Підтримка': '#8338EC',
+    'Без тематики': '#CCCCCC'
+  };
+
+  if (!currentUser) {
+    return <div className={styles.forumContainer}><p>Завантаження...</p></div>;
+  }
+
+  const navigationItems = [
+    { label: 'Форум', to: '/forum' },
+  ];
+
   return (
     <div className={styles.forumContainer}>
-      {/* Перша секція - Головний екран */}
       <section className={styles.heroSection}>
         <h1 className={styles.heroTitle}>Форум, де можна почитати історії інших</h1>
         <p className={styles.heroText}>
@@ -72,62 +235,105 @@ const ForumPage = () => {
         <div className={styles.heroBackground} />
       </section>
 
-      {/* Друга секція - Профіль користувача та навігація */}
-      <UserProfile user={user} navigationItems={navigationItems} activeItem="Форум" />
+      <UserProfile user={currentUser} navigationItems={navigationItems} activeItem="Форум" showBackButton={true} />
 
-      {/* Третя секція - Перелік тематик та історії */}
       <section className={styles.storiesSection}>
         <div className={styles.topicsColumn}>
           <h2 className={styles.topicsTitle}>Тематики</h2>
           <ul className={styles.topicsList}>
-            {topics.map((topic) => (
+            {allTopics.map(topic => (
               <li
                 key={topic}
                 className={styles.topicItem}
                 onClick={() => handleTopicClick(topic)}
-                style={{ fontWeight: selectedTopic === topic ? 'bold' : 'normal' }}
+                style={{
+                  fontWeight: selectedTopic === topic || (selectedTopic === null && topic === "Всі") ? 'bold' : 'normal',
+                  color: topicColors[topic] || '#333'
+                }}
               >
                 {topic}
               </li>
             ))}
           </ul>
         </div>
+
         <div className={styles.storiesColumn}>
           <h2 className={styles.storiesTitle}>Історії {selectedTopic && `(${selectedTopic})`}</h2>
-          {filteredStories.map((story) => (
-            <div key={story.id} className={styles.storyCard}>
-              <div className={styles.authorInfo}>
-                <img src={story.author.photo} alt={story.author.name} className={styles.authorPhoto} />
-                <div className={styles.authorDetails}>
-                  <h3 className={styles.authorName}>{story.author.name}</h3>
-                  <p className={styles.authorEmail}>{story.author.email}</p>
-                </div>
-              </div>
-              {story.title && <h4 className={styles.storyTitle}>{story.title}</h4>}
-              <p className={styles.storyText}>{story.text}</p>
-              <div className={styles.storyMeta}>
-                <span className={styles.storyTopic}>{story.topic}</span>
-                <div className={styles.storyActions}>
-                  <Button variant="icon" onClick={() => handleLike(story.id)}>
-                    ❤️ {likes[story.id] || story.likes}
-                  </Button>
-                  <Button variant="icon" onClick={() => handleCommentClick(story.id)}>
-                    💬 {story.comments}
-                  </Button>
-                </div>
-              </div>
-              {commentFormsVisible[story.id] && (
-                <div className={styles.commentForm}>
-                  <textarea
-                    value={comments[story.id] || ''}
-                    onChange={(e) => handleCommentChange(e, story.id)}
-                    placeholder="Напишіть свій коментар..."
+          {filteredStories.length > 0 ? (
+            filteredStories.map((story) => (
+              <div key={story.id} className={styles.storyCard}>
+                <div className={styles.authorInfo}>
+                  <img
+                    src={story.author.profileImage || story.author.photo || '/default-user.jpg'}
+                    alt={story.author.login || story.author.name}
+                    className={styles.authorPhoto}
                   />
-                  <Button variant="blue" onClick={() => handlePostComment(story.id)}>Відправити</Button>
+                  <div className={styles.authorDetails}>
+                    <h3 className={styles.authorName}>{story.author.login || story.author.name}</h3>
+                    <p className={styles.authorEmail}>{story.author.email}</p>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+
+                {story.title && <h4 className={styles.storyTitle}>{story.title}</h4>}
+                <p className={styles.storyText}>
+                  {expandedStories[story.id]
+                    ? story.text
+                    : `${story.text.split('. ').slice(0, 3).join('. ')}${story.text.split('. ').length > 3 ? '...' : ''}`}
+                </p>
+                {story.text.split('. ').length > 3 && (
+                  <button
+                    className={styles.expandButton}
+                    onClick={() => toggleExpand(story.id)}
+                  >
+                    {expandedStories[story.id] ? '▲ Згорнути' : '▼ Читати далі'}
+                  </button>
+                )}
+
+                <div className={styles.storyMeta}>
+                  <span className={styles.storyTopic} style={{ color: topicColors[story.topic] || '#333' }}>
+                    {story.topic}
+                  </span>
+                  <div className={styles.storyActions}>
+                    {/* Оновлена кнопка лайка */}
+                    <Button
+                        variant="icon"
+                        onClick={() => handleLike(story.id)}
+                        // Стиль для зміни кольору сердечка
+                        style={{ color: userLikedStories[story.id] ? '#FF0000' : '#888' }} // Червоний або сірий
+                    >
+                      ❤️ {/* Смайлик сердечка */}
+                      {likes[story.id] !== undefined ? likes[story.id] : story.initialLikes || 0}
+                    </Button>
+                    <Button variant="icon" onClick={() => handleCommentClick(story.id)}>
+                      💬 {(allComments[story.id]?.length || 0)}
+                    </Button>
+                  </div>
+                </div>
+
+                {commentFormsVisible[story.id] && (
+                  <div className={styles.commentForm}>
+                    <div className={styles.commentList}>
+                      {(allComments[story.id] || []).map((c, i) => (
+                        <div key={`${story.id}-${i}`} className={styles.commentItem}>
+                          <span className={styles.commentAuthor}>{c.author}</span>
+                          <p className={styles.commentText}>{c.text}</p>
+                          <span className={styles.commentDate}>{c.date}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <textarea
+                      value={comments[story.id] || ''}
+                      onChange={(e) => handleCommentChange(e, story.id)}
+                      placeholder="Напишіть свій коментар..."
+                    />
+                    <Button variant="blue" onClick={() => handlePostComment(story.id)}>Відправити</Button>
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>Немає історій для відображення за вибраною тематикою.</p>
+          )}
         </div>
       </section>
     </div>

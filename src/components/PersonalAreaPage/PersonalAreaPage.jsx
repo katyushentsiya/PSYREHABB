@@ -1,19 +1,41 @@
 // components/PersonalAreaPage/PersonalAreaPage.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react'; // Додаємо useEffect та useState
 import styles from './PersonalAreaPage.module.css';
 import Button from '../Button/Button';
 import UserProfile from '../UserProfile/UserProfile';
+import { useNavigate } from 'react-router-dom'; // Додаємо useNavigate для перенаправлення
 
 const PersonalAreaPage = () => {
-  const user = {
-    login: 'Tarabakina',
-    email: 'tarabyta@gmail.com',
-    profileImage: '/userProfileImage.jpg',
-  };
+  const navigate = useNavigate();
+  // Стан для зберігання даних поточного користувача
+  const [currentUser, setCurrentUser] = useState(null);
 
+  useEffect(() => {
+    // При завантаженні компонента, спробуйте отримати дані користувача з localStorage
+    const storedUser = localStorage.getItem('loggedInUser');
+    if (storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    } else {
+      // Якщо користувач не авторизований, перенаправляємо на сторінку входу
+      // Або на головну, залежно від вашої логіки
+      navigate('/login'); // Припускаємо, що у вас є маршрут '/login'
+      console.log('Користувач не авторизований. Перенаправлення на сторінку входу.');
+    }
+  }, [navigate]); // Залежність від navigate, щоб useEffect перезапускався, якщо navigate змінюється (хоча це рідкість)
+
+  // Якщо користувач ще не завантажений або не авторизований, можемо показати лоадер або нічого
+  if (!currentUser) {
+    return (
+      <div className={styles.personalAreaContainer}>
+        <p>Завантаження даних користувача або перевірка авторизації...</p>
+      </div>
+    );
+  }
+
+  // Якщо currentUser є, використовуємо його дані
   const navigationItems = [
     { label: 'Форум', to: '/forum' },
-    { label: 'Тестування', onClick: () => console.log('Тестування') },
+    { label: 'Тестування', to: '/testing' },
     { label: 'Матеріали', onClick: () => console.log('Матеріали') },
     { label: 'Щоденник', to: '/diary' },
   ];
@@ -33,7 +55,8 @@ const PersonalAreaPage = () => {
       </section>
 
       {/* Друга секція - Дані користувача та навігація */}
-        <UserProfile user={user} navigationItems={navigationItems} />
+      {/* Передаємо currentUser до UserProfile */}
+      <UserProfile user={currentUser} navigationItems={navigationItems} />
 
     </div>
   );
