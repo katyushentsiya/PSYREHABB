@@ -7,7 +7,7 @@ const Footer = () => {
   const socialLinks = [
     { href: 'https://facebook.com', src: '/PSYREHABB/Facebook.png', alt: 'Facebook' },
     { href: 'https://twitter.com', src: '/PSYREHABB/twitter.png', alt: 'Twitter' },
-    { href: 'https://instagram.com', src: '/instagram.png', alt: 'Instagram' },
+    { href: 'https://instagram.com', src: '/PSYREHABB/instagram.png', alt: 'Instagram' },
   ];
 
   return (
