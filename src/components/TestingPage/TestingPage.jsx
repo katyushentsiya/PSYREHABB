@@ -1,32 +1,55 @@
-import React, { useState, useEffect } from 'react'; // import useState
+import React, { useState, useEffect } from 'react';
 import styles from './TestingPage.module.css';
 import UserProfile from '../UserProfile/UserProfile';
 import Button from '../Button/Button';
-import PostTestForm from '../PostTestForm/PostTestForm'; // імпортуємо PostTestForm
+import PostTestForm from '../PostTestForm/PostTestForm';
+import { useNavigate } from 'react-router-dom';
 
 const TestingPage = () => {
-  const user = {
-    login: 'Tarabakina',
-    email: 'tarabyta@gmail.com',
-    profileImage: '/userProfileImage.jpg',
-  };
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(null);
+  const [showPostTestForm, setShowPostTestForm] = useState(false);
 
-  const navigationItems = [
-    { label: 'Тестування' },
-  ];
+  useEffect(() => {
+    const storedUser = localStorage.getItem('loggedInUser');
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+
+        if (parsedUser.profileImage && parsedUser.profileImage.startsWith('/')) {
+            // Використовуємо import.meta.env.BASE_URL для статичних активів у Vite
+            parsedUser.profileImage = import.meta.env.BASE_URL + parsedUser.profileImage.substring(1);
+        }
+        setCurrentUser(parsedUser);
+      } catch (error) {
+        console.error('Помилка при парсингу loggedInUser з localStorage', error);
+        localStorage.removeItem('loggedInUser');
+        navigate('/login'); // <--- ЗМІНА: Використовуємо відносний шлях, react-router-dom обробить basename
+      }
+    } else {
+      navigate('/login'); // <--- ЗМІНА: Використовуємо відносний шлях, react-router-dom обробить basename
+      console.log('Користувач не авторизований. Перенаправлення на сторінку входу.');
+    }
+  }, [navigate]);
+
+  // ЗМІНА: 'to' тепер також є відносним шляхом
+  const navigationItems = [{ label: 'Тестування', to: '/testing' }];
+
+  if (!currentUser) {
+    return (
+      <div className={styles.testingContainer}>
+        <p>Завантаження даних користувача або перевірка авторизації...</p>
+      </div>
+    );
+  }
 
   const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScEAWpiizFlEEBFO0GW5B0nljyeGzmAebOL0ZaX7NZ-hrYQvA/viewform?embedded=true";
 
-  // Стан для контролю видимості PostTestForm
-  const [showPostTestForm, setShowPostTestForm] = useState(false);
-
-  // Функція, яка буде викликатися при натисканні кнопки "Перейти"
   const handleGoToPostTestForm = () => {
-    setShowPostTestForm(true); // Показуємо форму PostTestForm
+    setShowPostTestForm(true);
     console.log('Кнопку "Перейти" натиснуто. Відкриваю PostTestForm.');
   };
 
-  // Функція для закриття PostTestForm
   const handleClosePostTestForm = () => {
     setShowPostTestForm(false);
     console.log('PostTestForm закрита.');
@@ -34,23 +57,23 @@ const TestingPage = () => {
 
   return (
     <div className={styles.testingContainer}>
-      {/* Перша секція - Головний екран */}
       <section className={styles.heroSection}>
         <h1 className={styles.heroTitle}>Психологічне тестування після ДТП</h1>
         <p className={styles.heroText}>
           Цей тест допоможе краще зрозуміти ваш психологічний стан та виявити потреби в підтримці.
         </p>
-        <div className={styles.heroBackground} /> {/* Для фонового зображення */}
+        <div className={styles.heroBackground} />
       </section>
 
-      {/* Секція Профілю користувача та навігації */}
-      {/* showBackButton={true} додаємо, щоб стрілка відображалась */}
-      <UserProfile user={user} navigationItems={navigationItems} activeItem="Тестування" showBackButton={true} />
+      <UserProfile
+        user={currentUser}
+        navigationItems={navigationItems}
+        activeItem="Тестування"
+        showBackButton={true}
+      />
 
-      {/* Секція Тестування */}
       <section className={styles.testSection}>
-        {/* Умовний рендеринг: показуємо Google Form АБО PostTestForm */}
-        {!showPostTestForm ? ( // Якщо showPostTestForm false, показуємо Google Form
+        {!showPostTestForm ? (
           <>
             <h2 className={styles.testTitle}>Будь ласка, заповніть форму:</h2>
             <div className={styles.googleFormWrapper}>
@@ -69,15 +92,15 @@ const TestingPage = () => {
             </p>
             <Button
               variant="blue"
-              onClick={handleGoToPostTestForm} // Викликаємо нову функцію
-              className={styles.goToMaterialsButton} // Можливо, захочете змінити назву класу
+              onClick={handleGoToPostTestForm}
+              className={styles.goToMaterialsButton}
             >
               Перейти
             </Button>
           </>
-        ) : ( // Інакше, якщо showPostTestForm true, показуємо PostTestForm
+        ) : (
           <PostTestForm
-            onClose={handleClosePostTestForm} // Передаємо функцію для закриття форми
+            onClose={handleClosePostTestForm}
           />
         )}
       </section>
