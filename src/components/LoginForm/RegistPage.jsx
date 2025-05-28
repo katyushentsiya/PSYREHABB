@@ -5,13 +5,13 @@ import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 
 const RegistPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const [login, setLogin] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [profileImage, setProfileImage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [profileImage, setProfileImage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleImageChange = (event) => {

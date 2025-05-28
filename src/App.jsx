@@ -38,7 +38,7 @@ function App() {
 
 
   return (
-    <Router>
+      <Router basename="/PSYREHABB"> {/* <--- Додаємо basename */}
       <div className="app">
         <Header /> 
 
@@ -63,6 +63,8 @@ function App() {
             <Route path="/testing" element={<TestingPage />} />
 
             <Route path='/library' element={<MaterialsPage />} />
+
+            <Route path="*" element={<div><h2>404 - Сторінка не знайдена</h2><p>Перевірте URL або поверніться на <a href="/PSYREHABB">головну</a>.</p></div>} />
 
           </Routes>
         </main>
