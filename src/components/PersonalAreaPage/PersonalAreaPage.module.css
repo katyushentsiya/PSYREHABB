@@ -1,3 +1,4 @@
+/* components/PersonalAreaPage/PersonalAreaPage.module.css */
 
 .personalAreaContainer {
   display: flex;
@@ -31,7 +32,6 @@
   margin-bottom: 30px;
 }
 
-
 .heroBackground {
   position: absolute;
   top: 0;
@@ -41,6 +41,158 @@
   background-image: url('./userProfileImage.jpg'); /* Замініть шлях на ваше зображення */
   background-size: cover;
   background-position: center;
-  opacity: 0.4; 
-  z-index: -1; 
+  opacity: 0.4;
+  z-index: -1;
+}
+
+/* НОВІ СТИЛІ: Окремий блок для кнопки перемикання історій */
+.personalStoriesToggleButtonBlock {
+  width: 100%;
+  max-width: 900px; /* Ширина, як у UserProfile */
+  background-color: #edb3db29; /* Фон, як у UserProfile */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+  padding: 20px; /* Внутрішні відступи */
+  margin-top: 20px; /* Відступ від UserProfile */
+  margin-bottom: 40px; /* Відступ до наступної секції */
+  display: flex; /* Для вирівнювання кнопки */
+  justify-content: flex-start; /* Вирівнювання кнопки по лівому краю */
+  align-items: center; /* Центрування по вертикалі, якщо потрібно */
+}
+
+.toggleStoriesButton {
+  /* Стилі для самої кнопки */
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  /* Button variant="blue" вже має базові стилі, тут можна їх перевизначити */
+}
+
+
+/* ОНОВЛЕНІ СТИЛІ: Секція "Мої історії" */
+.personalStoriesSection {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  max-width: 900px;
+  padding: 40px 20px;
+  background-color: #edb3db29;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+  margin-bottom: 40px;
+}
+
+.personalStoriesTitle {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.storiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Адаптивна сітка карток */
+  gap: 10px; /* Відстань між картками */
+}
+
+.storyCard {
+  background-color: #ffffff;
+  border: 0 2px 5px rgba(227, 110, 110, 0.848);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Для рівномірного розподілу вмісту */
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.authorPhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.authorName {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.authorEmail {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.storyTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.storyText {
+  line-height: 1.6;
+  color: #555;
+  flex-grow: 1;
+  margin-bottom: 15px;
+}
+
+.storyMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.storyTopic {
+  background-color: #edb3db29;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.noStoriesMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 30px;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+
+.expandButton {
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 0;
+  text-align: left;
+  margin-top: 8px;
+}
+
+.expandButton:hover {
+  text-decoration: underline;
 }

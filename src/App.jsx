@@ -12,7 +12,7 @@ import PersonalAreaPage from './components/PersonalAreaPage/PersonalAreaPage';
 import DiaryEmotionsPage from './components/DiaryEmotionsPage/DiaryEmotionsPage';
 import ForumPage from './components/ForumPage/ForumPage'; 
 import TestingPage from './components/TestingPage/TestingPage';
-
+import MaterialsPage from './components/MaterialsPage/MaterialsPage';
 import initialForumStoriesData from './components/ForumPage/forumStoriesData';
 
 import './App.css';
@@ -61,6 +61,8 @@ function App() {
             />
 
             <Route path="/testing" element={<TestingPage />} />
+
+            <Route path='/library' element={<MaterialsPage />} />
 
           </Routes>
         </main>
