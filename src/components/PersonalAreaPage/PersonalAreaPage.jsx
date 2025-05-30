@@ -12,7 +12,6 @@ const PersonalAreaPage = () => {
   const [showPersonalStories, setShowPersonalStories] = useState(false);
   const [expandedStories, setExpandedStories] = useState({});
 
-
   useEffect(() => {
     const storedUser = localStorage.getItem('loggedInUser');
     if (storedUser) {

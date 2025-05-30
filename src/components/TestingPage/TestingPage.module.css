@@ -83,3 +83,11 @@
   font-size: 0.95rem;
   color: #666;
 }
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+  font-size: 16px;
+}

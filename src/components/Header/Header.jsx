@@ -17,22 +17,10 @@ const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const checkAuthStatus = () => {
-      const storedUser = localStorage.getItem('loggedInUser');
-      if (storedUser) {
-        setIsLoggedIn(true);
-        setCurrentUser(JSON.parse(storedUser));
-      } else {
-        setIsLoggedIn(false);
-        setCurrentUser(null);
-      }
-    };
-
-    checkAuthStatus();
-    window.addEventListener('storage', checkAuthStatus);
-    return () => {
-      window.removeEventListener('storage', checkAuthStatus);
-    };
+    // Примусовий вихід користувача при кожному завантаженні сторінки
+    localStorage.removeItem('loggedInUser');
+    setIsLoggedIn(false);
+    setCurrentUser(null);
   }, []);
 
   const handleLoginButtonClick = () => {

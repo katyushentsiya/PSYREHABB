@@ -1,4 +1,6 @@
-/* src/components/MaterialsPage/MaterialsPage.module.css */
+/* materialsPage.module.css */
+
+/* Залишаємо існуючі загальні стилі без змін, якщо вони вже працюють */
 .materialsContainer {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,6 @@
   padding-bottom: 40px;
 }
 
-/* Стилі для першої секції - Головний екран */
 .heroSection {
   position: relative;
   display: flex;
@@ -47,36 +48,89 @@
 .materialsListSection {
   width: 100%;
   max-width: 900px;
-  margin-top: 40px;
+  margin-top: 10px;
+  padding: 0; /* Додаємо невеликий горизонтальний відступ для секції */
+  box-sizing: border-box; /* Важливо, щоб padding не збільшував ширину */
 }
 
+/* Стилі для заголовка "Усі матеріали", який знаходиться всередині materialsListSection */
+.materialsListSection h2 { /* Таргетуємо H2 всередині materialsListSection */
+  font-size: 2rem; /* Розмір шрифту, налаштуйте за потребою */
+  color: #333; /* Колір тексту */
+  margin-top: 0; /* Відступ зверху вже може бути заданий materialsListSection. Якщо потрібно, змініть. */
+  margin-bottom: 20px; /* *** ОСНОВНИЙ ВІДСТУП ЗНИЗУ *** */
+  text-align: left; /* Вирівнювання тексту по лівому краю */
+  /* Горизонтальний padding для вирівнювання тексту з контентом блоків */
+  padding: 0 20px; /* Якщо .categoryBlock має padding 25px, то тут може знадобитися інше значення */
+  box-sizing: border-box; /* Для коректної ширини з padding */
+}
+
+/* Оновлені стилі для блоків категорій */
 .categoryBlock {
-  margin-bottom: 30px;
+  width: 100%; /* Займає всю доступну ширину свого батька (.materialsListSection) */
+  max-width: 900px; /* Явно задаємо максимальну ширину, щоб відповідати іншим блокам */
+  margin-bottom: 30px; /* Відступ між категоріями */
+  background-color: #edb3db29; /* Дуже світлий фон, щоб виділити блок */
+  border-radius: 8px; /* Більш м'які заокруглені кути */
+  padding: 25px;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Включає padding та border у загальну ширину 900px */
+  margin-left: auto; /* Центрує блок всередині .materialsListSection, якщо він менший за 100% */
+  margin-right: auto;
 }
 
-.categoryBlock h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+/* Стилі для заголовків категорій (h2 та h3) */
+.categoryBlock h2,
+.categoryBlock h3 {
+  font-size: 1.8rem; /* Розмір для головних заголовків (Рекомендовано, Усі матеріали) */
+  margin-bottom: 15px;
   color: #333;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 5px;
+  border-bottom: #ff83c167; /* Більш яскравий синій колір для розділової лінії */
+  padding-bottom: 10px;
+  text-align: center; /* Центруємо заголовки секцій */
 }
+
+/* Окремі стилі для підзаголовків категорій (Зміни в емоціях і мисленні, Повторне переживання тощо) */
+.categoryBlock h3 {
+  font-size: 1.5rem; /* Трохи менший розмір для підкатегорій */
+  border-bottom: 1px solid #ff83c167; /* Тонша лінія для підкатегорій */
+  text-align: left; /* Вирівнювання підкатегорій по лівому краю */
+  margin-top: 20px; /* Відступ зверху для візуального відділення */
+}
+
 
 .materialList {
   list-style: none;
   padding-left: 0;
+  margin-top: 20px; /* Додаємо відступ зверху для списку посилань */
 }
 
+/* Оновлені стилі для окремих елементів матеріалів (посилань) */
 .materialItem {
-  margin-bottom: 12px;
+  margin-bottom: 12px; /* Невеликий відступ між елементами */
+  padding: 12px 18px; /* Внутрішній відступ для кожного елемента */
+  background-color: #ffffff; /* Білий фон для кожного пункту */
+  border-radius: 8px; /* Заокруглені кути для елементів */
+  border: 1px solid #ff83c167; /* Дуже світла рамка для чіткості */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Плавні переходи */
+}
+
+.materialItem:hover {
+  background-color: #fdb6d93d; /* Світло-блакитний фон при наведенні */
+  transform: translateX(8px); /* Невеликий зсув вправо при наведенні, для інтерактивності */
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848); /* Легка тінь при наведенні, що підкреслює посилання */
 }
 
 .materialItem a {
   text-decoration: none;
-  color: #0066cc;
+  color: #333; /* Зберігаємо синій колір посилання */
   font-weight: 500;
+  display: block; /* Робить всю область елемента клікабельною */
 }
 
 .materialItem a:hover {
-  text-decoration: underline;
+  text-decoration: none; /* Прибираємо підкреслення при наведенні, оскільки вже є ефект фону */
 }

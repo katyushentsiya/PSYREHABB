@@ -1,11 +1,14 @@
+// src/components/PostTestForm/PostTestForm.jsx
 import React, { useState } from 'react';
 import styles from './PostTestForm.module.css';
 import Button from '../Button/Button';
+import { useNavigate } from 'react-router-dom'; // <--- Додаємо useNavigate
 
-const PostTestForm = ({ onClose }) => { // Прибираємо onFormSubmit, бо кнопка не працює
+const PostTestForm = ({ onClose }) => {
   const [selectedScore, setSelectedScore] = useState(null);
+  const navigate = useNavigate(); // <--- Ініціалізуємо useNavigate
 
-  const question = "Наскільки загалом травматична подія вплинула на ваше повсякденне життя та емоційний стан за останній місяць?";
+  const question = "Наскільки загалом травматична подія вплинула на ваше повсякденне життя та емоційний стан за останній час?";
   const options = [
     { label: "Зовсім не вплинула", value: 0 },
     { label: "Трохи вплинула", value: 1 },
@@ -14,13 +17,18 @@ const PostTestForm = ({ onClose }) => { // Прибираємо onFormSubmit, б
     { label: "Надзвичайно вплинула", value: 4 },
   ];
 
-  // Функція handleSubmit більше не викликає onFormSubmit
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Наразі нічого не робимо при натисканні кнопки, оскільки вона "не працююча"
-    console.log("Кнопка 'Надіслати' натиснута, але функціонал надсилання поки вимкнено.");
-    // Можна залишити alert, якщо хочете підтвердження натискання
-    // alert("Наразі функціонал надсилання відповіді відключено.");
+    if (selectedScore !== null) {
+      // Зберігаємо відповідь на завершальне питання в localStorage
+      localStorage.setItem('lastTestScore', JSON.stringify(selectedScore));
+      console.log(`Вибрана оцінка збережена: ${selectedScore}`);
+      // alert("Ваша відповідь збережена!"); // Можна прибрати для більш плавного UX
+      onClose(); // Закриваємо форму
+      navigate('/library'); // <--- Перенаправляємо на сторінку "Матеріали"
+    } else {
+      alert("Будь ласка, оберіть відповідь перед надсиланням.");
+    }
   };
 
   return (
@@ -28,11 +36,11 @@ const PostTestForm = ({ onClose }) => { // Прибираємо onFormSubmit, б
       <div className={styles.postTestFormContainer}>
         <div className={styles.header}>
           <h3 className={styles.title}>Завершальне питання</h3>
-          {onClose && <button onClick={onClose} className={styles.closeButton}>&times;</button>}
+          {onClose && <button onClick={onClose} className={styles.closeButton}>×</button>}
         </div>
 
         <h4 className={styles.formQuestion}>{question}</h4>
-        <form onSubmit={handleSubmit}> {/* onSubmit все ще викликає handleSubmit */}
+        <form onSubmit={handleSubmit}>
           <div className={styles.optionsGroup}>
             {options.map((option) => (
               <label key={option.value} className={styles.optionLabel}>
@@ -48,7 +56,6 @@ const PostTestForm = ({ onClose }) => { // Прибираємо onFormSubmit, б
               </label>
             ))}
           </div>
-          {/* Кнопка все ще тип="submit", але handleSubmit нічого не робить */}
           <Button type="submit" variant="blue" className={styles.submitButton}>
             Надіслати
           </Button>

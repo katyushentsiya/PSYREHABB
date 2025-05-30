@@ -1,48 +1,44 @@
-import React, { useState, useEffect } from 'react';
+// src/components/TestingPage/TestingPage.jsx
+import React, { useState, useEffect } from 'react'; // useEffect все ще потрібен для isTestCompleted, але не для currentUser
 import styles from './TestingPage.module.css';
 import UserProfile from '../UserProfile/UserProfile';
 import Button from '../Button/Button';
 import PostTestForm from '../PostTestForm/PostTestForm';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom'; // Все ще не потрібен
 
 const TestingPage = () => {
-  const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState(null);
+  // const navigate = useNavigate(); // Все ще не потрібен
+  const [currentUser, setCurrentUser] = useState(null); // Ми встановимо це з localStorage один раз, коли компонент монтується
   const [showPostTestForm, setShowPostTestForm] = useState(false);
+  const [isTestCompleted, setIsTestCompleted] = useState(false);
 
+  // **** ЦЕЙ useEffect ПОВИНЕН БУТИ ЗМІНЕНИЙ / ОЧИЩЕНИЙ ****
+  // **** Тепер він лише ЗЧИТУЄ currentUser, а не ПЕРЕВІРЯЄ АВТОРИЗАЦІЮ ****
+  // **** ProtectedRoute вже гарантує, що користувач авторизований, якщо цей компонент рендериться.
   useEffect(() => {
     const storedUser = localStorage.getItem('loggedInUser');
     if (storedUser) {
       try {
         const parsedUser = JSON.parse(storedUser);
-
+        // Логіка для обробки profileImage з BASE_URL
         if (parsedUser.profileImage && parsedUser.profileImage.startsWith('/')) {
-            // Використовуємо import.meta.env.BASE_URL для статичних активів у Vite
-            parsedUser.profileImage = import.meta.env.BASE_URL + parsedUser.profileImage.substring(1);
+          parsedUser.profileImage = import.meta.env.BASE_URL + parsedUser.profileImage.substring(1);
         }
-        setCurrentUser(parsedUser);
+        setCurrentUser(parsedUser); // Встановлюємо дані користувача
       } catch (error) {
-        console.error('Помилка при парсингу loggedInUser з localStorage', error);
+        console.error('Помилка при парсингу loggedInUser з localStorage у TestingPage:', error);
+        // Якщо тут є помилка парсингу, це може вказувати на пошкодження даних.
+        // ProtectedRoute вже мав би це відловити, але це як запасний механізм.
         localStorage.removeItem('loggedInUser');
-        navigate('/login'); // <--- ЗМІНА: Використовуємо відносний шлях, react-router-dom обробить basename
+        setCurrentUser(null); // Якщо дані пошкоджені, currentUser буде null
       }
-    } else {
-      navigate('/login'); // <--- ЗМІНА: Використовуємо відносний шлях, react-router-dom обробить basename
-      console.log('Користувач не авторизований. Перенаправлення на сторінку входу.');
     }
-  }, [navigate]);
+    // else { // Цей else блок повністю зайвий, бо ProtectedRoute вже перенаправив би
+    //   setCurrentUser(null);
+    // }
+  }, []); // [] означає, що ефект запускається лише один раз після першого рендеру
 
-  // ЗМІНА: 'to' тепер також є відносним шляхом
   const navigationItems = [{ label: 'Тестування', to: '/testing' }];
-
-  if (!currentUser) {
-    return (
-      <div className={styles.testingContainer}>
-        <p>Завантаження даних користувача або перевірка авторизації...</p>
-      </div>
-    );
-  }
-
   const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScEAWpiizFlEEBFO0GW5B0nljyeGzmAebOL0ZaX7NZ-hrYQvA/viewform?embedded=true";
 
   const handleGoToPostTestForm = () => {
@@ -55,6 +51,18 @@ const TestingPage = () => {
     console.log('PostTestForm закрита.');
   };
 
+  // Ця перевірка `if (!currentUser)` тепер буде спрацьовувати, якщо:
+  // 1. Дані користувача ще не завантажились з localStorage (перший рендер).
+  // 2. Була помилка парсингу localStorage, і currentUser був встановлений в null.
+  // В ідеалі, це має бути дуже короткочасний стан, або ж він вказує на проблему.
+  if (!currentUser) {
+    return (
+      <div className={styles.testingContainer}>
+        <p>Завантаження даних користувача...</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.testingContainer}>
       <section className={styles.heroSection}>
@@ -66,7 +74,7 @@ const TestingPage = () => {
       </section>
 
       <UserProfile
-        user={currentUser}
+        user={currentUser} // currentUser тепер завжди буде об'єктом користувача тут
         navigationItems={navigationItems}
         activeItem="Тестування"
         showBackButton={true}
@@ -88,20 +96,29 @@ const TestingPage = () => {
               </iframe>
             </div>
             <p className={styles.noteText}>
-              Ваші відповіді будуть конфіденційними. Щоб отримати добірку навчальних матеріалів, натисніть кнопку
+              Після проходження тесту поставте галочку нижче, щоб продовжити:
             </p>
+
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                checked={isTestCompleted}
+                onChange={(e) => setIsTestCompleted(e.target.checked)}
+              />
+              Я пройшов(-ла) тест
+            </label>
+
             <Button
               variant="blue"
               onClick={handleGoToPostTestForm}
               className={styles.goToMaterialsButton}
+              disabled={!isTestCompleted}
             >
               Перейти
             </Button>
           </>
         ) : (
-          <PostTestForm
-            onClose={handleClosePostTestForm}
-          />
+          <PostTestForm onClose={handleClosePostTestForm} />
         )}
       </section>
     </div>
