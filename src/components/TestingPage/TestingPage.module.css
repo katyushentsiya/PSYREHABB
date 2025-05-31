@@ -1,8 +1,10 @@
+/* components/TestingPage/TestingPage.module.css */
+
 .testingContainer {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  padding-bottom: 40px; 
+  align-items: center;
+  padding-bottom: 40px;
 }
 
 /* Стилі для першої секції - Головний екран */
@@ -36,11 +38,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./userProfileImage.jpg'); 
+  background-image: url('/userProfileImage.jpg'); /* Замініть шлях на ваше зображення */
   background-size: cover;
   background-position: center;
-  opacity: 0.4; 
-  z-index: -1; 
+  opacity: 0.4;
+  z-index: -1;
 }
 
 
@@ -55,7 +57,8 @@
   background-color: #edb3db29;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
-  margin-bottom: 40px; 
+  margin-bottom: 40px;
+  box-sizing: border-box; /* Важливо для padding */
 }
 
 .testTitle {
@@ -67,14 +70,19 @@
 
 .googleFormWrapper {
   width: 100%;
-  overflow: hidden; 
+  overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
 }
 
 .googleFormWrapper iframe {
-  border: none; 
-  display: block; 
+  border: none;
+  display: block;
+  /* Важливо: висота iframe повинна бути задана в компоненті JSX
+     через атрибут `height` або інлайн-стиль, якщо ви не знаєте її заздалегідь.
+     Тут можна задати лише min-height або max-height */
+  min-height: 800px; /* Мінімальна висота для десктопу */
+  width: 100%; /* Iframe має займати всю ширину батьківського елемента */
 }
 
 .noteText {
@@ -90,4 +98,150 @@
   gap: 8px;
   margin-bottom: 1rem;
   font-size: 16px;
+}
+
+/* --- Медіа-запити для адаптації --- */
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .testingContainer {
+    padding-bottom: 30px;
+  }
+
+  .heroSection {
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    max-width: 760px; /* Зменшуємо max-width для планшетів */
+  }
+
+  .heroTitle {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .heroText {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .testSection {
+    max-width: 760px; /* Зменшуємо max-width для планшетів */
+    padding: 30px 20px;
+    margin-bottom: 30px;
+  }
+
+  .testTitle {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+  }
+
+  .googleFormWrapper iframe {
+    min-height: 700px; /* Зменшуємо мінімальну висоту на планшетах */
+  }
+
+  .noteText {
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+
+  .checkboxLabel {
+    font-size: 15px;
+  }
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .testingContainer {
+    padding-bottom: 20px;
+  }
+
+  .heroSection {
+    padding: 40px 15px;
+    margin-bottom: 20px;
+    width: 100%; /* Займаємо всю ширину на мобільних */
+    max-width: none; /* Знімаємо обмеження max-width */
+  }
+
+  .heroTitle {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .heroText {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .testSection {
+    max-width: 95%; /* Трохи менше 100%, щоб був невеликий відступ від країв */
+    padding: 20px 15px;
+    margin-bottom: 20px;
+    /* Зберігаємо фон, тінь та заокруглення, як ви просили для інших блоків */
+  }
+
+  .testTitle {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .googleFormWrapper iframe {
+    /* На мобільних часто потрібно зменшити висоту або дати їй бути авто,
+       щоб уникнути зайвого прокручування всередині iframe.
+       Якщо форма Google Forms вже адаптивна, цього може бути достатньо. */
+    min-height: 500px; /* Даємо меншу мінімальну висоту */
+  }
+
+  .noteText {
+    margin-top: 10px;
+    font-size: 0.85rem;
+  }
+
+  .checkboxLabel {
+    font-size: 14px;
+    gap: 6px;
+  }
+}
+
+/* Дуже маленькі мобільні екрани (до 480px) */
+@media (max-width: 480px) {
+  .testingContainer {
+    padding-bottom: 15px;
+  }
+
+  .heroSection {
+    padding: 30px 10px;
+    margin-bottom: 15px;
+  }
+
+  .heroTitle {
+    font-size: 1.6rem;
+  }
+
+  .heroText {
+    font-size: 0.9rem;
+  }
+
+  .testSection {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
+
+  .testTitle {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .googleFormWrapper iframe {
+    min-height: 400px; /* Ще менша висота для дуже маленьких екранів */
+  }
+
+  .noteText {
+    margin-top: 8px;
+    font-size: 0.8rem;
+  }
+
+  .checkboxLabel {
+    font-size: 13px;
+    gap: 5px;
+  }
 }

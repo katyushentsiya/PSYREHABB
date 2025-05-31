@@ -1,16 +1,18 @@
 .loginFormContainer {
   max-width: 1180px;
   margin: 50px auto;
-  padding: 80px;
+  padding: 80px; /* Десктопний padding */
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
   background-color: #ffffff;
+  box-sizing: border-box; /* Важливо для контролю ширини і паддінгу */
 }
 
 .loginFormContainer h1 {
   text-align: center;
   margin-bottom: 20px;
+  font-size: 2.2em; /* Десктопний розмір заголовка */
 }
 
 .form {
@@ -28,15 +30,16 @@ label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  font-size: 1em; /* Десктопний розмір шрифту для label */
 }
 
 .input {
   width: 100%;
-  padding: 10px;
+  padding: 10px; /* Десктопний padding */
   border: 1px solid #ddd;
   border-radius: 3px;
   box-sizing: border-box;
-  font-size: 1rem;
+  font-size: 1rem; /* Десктопний розмір шрифту для input */
 }
 
 .input[type="file"] {
@@ -48,29 +51,123 @@ label {
 
 /* Додано: Стилі для попереднього перегляду зображення */
 .imagePreview {
-  display: block; /* Щоб зображення було на новому рядку */
+  display: block;
   margin-top: 10px;
-  max-width: 100px; /* Обмеження розміру прев'ю */
+  max-width: 100px;
   max-height: 100px;
-  border-radius: 50%; /* Кругле зображення */
-  object-fit: cover; /* Заповнення області */
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: auto; /* Центруємо зображення, якщо воно менше батьківського */
+  margin-right: auto;
 }
 
 /* Додано: Стилі для повідомлень про помилки/успіх */
-.errorMessage {
-  color: red;
-  font-size: 0.9em;
-  margin-top: -10px; /* Трохи підняти, щоб не було великого відступу */
-  margin-bottom: 15px;
-  text-align: center;
-  width: 100%;
-}
-
+.errorMessage,
 .successMessage {
-  color: green;
   font-size: 0.9em;
   margin-top: -10px;
   margin-bottom: 15px;
   text-align: center;
   width: 100%;
+  box-sizing: border-box; /* Важливо для width: 100% і padding */
+  padding: 0 10px; /* Додамо невеликий горизонтальний padding для мобільних */
+}
+
+.errorMessage {
+  color: red;
+}
+
+.successMessage {
+  color: green;
+}
+
+
+/* --- Медіа-запити для адаптації --- */
+
+/* Планшети та менші десктопи (до 992px) */
+@media (max-width: 992px) {
+  .loginFormContainer {
+    max-width: 90%; /* Зменшуємо максимальну ширину */
+    margin: 30px auto; /* Менший зовнішній відступ */
+    padding: 60px; /* Зменшений padding */
+  }
+
+  .loginFormContainer h1 {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-size: 0.95em;
+  }
+
+  .input {
+    padding: 9px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Мобільні телефони (до 768px) */
+@media (max-width: 768px) {
+  .loginFormContainer {
+    max-width: 95%; /* Ще більше збільшуємо ширину для заповнення екрану */
+    margin: 20px auto; /* Ще менший зовнішній відступ */
+    padding: 30px; /* Значно зменшуємо padding */
+    box-shadow: none; /* Прибираємо тінь, щоб не було зайвої "коробки" на маленьких екранах */
+    border: none; /* Прибираємо рамку */
+  }
+
+  .loginFormContainer h1 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-size: 0.9em;
+  }
+
+  .input {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .formGroup {
+    margin-bottom: 10px; /* Зменшуємо відступи між групами полів */
+  }
+
+  .errorMessage,
+  .successMessage {
+    font-size: 0.85em;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    padding: 0 5px; /* Ще менший горизонтальний padding */
+  }
+}
+
+/* Дуже маленькі екрани (до 480px) */
+@media (max-width: 480px) {
+  .loginFormContainer {
+    padding: 20px; /* Ще менший padding */
+    margin: 10px auto; /* Мінімальний зовнішній відступ */
+  }
+
+  .loginFormContainer h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  label {
+    font-size: 0.85em;
+  }
+
+  .input {
+    padding: 7px;
+    font-size: 0.85rem;
+  }
+
+  .errorMessage,
+  .successMessage {
+    font-size: 0.8em;
+    margin-bottom: 8px;
+  }
 }

@@ -15,7 +15,7 @@ const LogoutConfirmModal = ({ isOpen, onConfirm, onCancel, targetPath }) => {
             Скасувати
           </Button>
           <Button variant="blue" onClick={() => onConfirm(targetPath)}>
-            Вийти та перейти
+            Вийти
           </Button>
         </div>
       </div>

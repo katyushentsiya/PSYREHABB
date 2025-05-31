@@ -1,9 +1,12 @@
+/* Services.module.css */
+
 .servicesSection {
   background-color: #edb3db29;
-  padding: 60px 20px;
-  width: 100vw;
+  padding: 60px 20px; /* Десктопний padding */
+  width: 100%; /* Змінено з 100vw, щоб уникнути горизонтальної прокрутки */
   display: flex;
   justify-content: center;
+  box-sizing: border-box; /* Важливо для width: 100% і padding */
 }
 
 .container {
@@ -11,6 +14,8 @@
   margin: 0 auto;
   text-align: center;
   width: 100%;
+  padding: 0 20px; /* Додано горизонтальний padding для десктопу */
+  box-sizing: border-box; /* Забезпечуємо, що padding враховується в ширині */
 }
 
 .container h2 {
@@ -21,6 +26,7 @@
 
 .servicesGrid {
   display: grid;
+  /* Десктопні стилі сітки */
   grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
   gap: 40px;
   margin-top: 30px;
@@ -30,13 +36,14 @@
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(65, 63, 63, 0.558);
-  padding: 50px;
+  padding: 50px; /* Десктопний padding */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
   min-height: 220px;
   position: relative;
+  box-sizing: border-box; /* Важливо для padding */
 }
 
 .card:hover {
@@ -44,7 +51,7 @@
 }
 
 .imageContainer {
-  width: 100px;
+  width: 100px; /* Десктопний розмір зображення */
   height: 100px;
   border-radius: 12px;
   overflow: hidden;
@@ -63,7 +70,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  padding-bottom: 10px; 
+  padding-bottom: 10px;
 }
 
 .title {
@@ -74,8 +81,105 @@
   text-align: left;
 }
 
+/* --- Медіа-запити для адаптації --- */
 
+/* Планшети (від 768px до 1024px) */
+@media (max-width: 1024px) {
+  .servicesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Менші картки на планшетах */
+    gap: 30px;
+  }
 
+  .card {
+    padding: 30px; /* Менший padding для карток на планшетах */
+    min-height: 200px;
+  }
 
+  .imageContainer {
+    width: 80px; /* Менші зображення на планшетах */
+    height: 80px;
+  }
 
+  .title {
+    font-size: 1.2em;
+  }
 
+  .container h2 {
+    font-size: 2.2em;
+  }
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .servicesSection {
+    padding: 40px 15px; /* Зменшений padding для секції */
+  }
+
+  .container {
+    padding: 0 15px; /* Зменшений горизонтальний padding для контейнера */
+  }
+
+  .container h2 {
+    font-size: 1.8em; /* Ще менший заголовок */
+    margin-bottom: 20px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr; /* Одна колонка на мобільних */
+    gap: 25px; /* Зменшений відступ між картками */
+  }
+
+  .card {
+    flex-direction: column; /* Зображення зверху, текст під ним */
+    align-items: center; /* Центруємо вміст картки */
+    text-align: center; /* Центруємо текст в картці */
+    padding: 25px; /* Ще менший padding */
+    min-height: auto; /* Висота адаптується під вміст */
+  }
+
+  .imageContainer {
+    width: 90px; /* Зображення трохи більше для кращої видимості */
+    height: 90px;
+    margin-bottom: 15px; /* Відступ від заголовка картки */
+  }
+
+  .title {
+    font-size: 1.2em; /* Розмір заголовка картки */
+    margin: 0 0 10px 0;
+    text-align: center; /* Центруємо заголовок картки */
+  }
+
+  .cardContent p { /* Якщо є параграф в картці, теж адаптуємо */
+    font-size: 0.95em;
+    line-height: 1.4;
+    text-align: center; /* Центруємо текст параграфа */
+  }
+}
+
+/* Мобільні телефони (дуже маленькі екрани, до 480px) */
+@media (max-width: 480px) {
+  .servicesSection {
+    padding: 30px 10px; /* Ще менший padding */
+  }
+
+  .container {
+    padding: 0 10px; /* Ще менший padding */
+  }
+
+  .container h2 {
+    font-size: 1.6em;
+  }
+
+  .card {
+    padding: 20px; /* Мінімальний padding */
+  }
+
+  .imageContainer {
+    width: 80px;
+    height: 80px;
+  }
+
+  .title {
+    font-size: 1.1em;
+  }
+}

@@ -16,9 +16,9 @@
   align-items: center;
   text-align: center;
   padding: 80px 20px;
-  color: #000000;
+  color: #000000; /* Колір тексту на фоні */
   width: 100vw;
-  margin-bottom: 40px;
+  margin-bottom: 40px; /* Відступ між секціями */
 }
 
 .heroTitle {
@@ -53,28 +53,24 @@
   box-sizing: border-box; /* Важливо, щоб padding не збільшував ширину */
 }
 
-/* Стилі для заголовка "Усі матеріали", який знаходиться всередині materialsListSection */
-.materialsListSection h2 { /* Таргетуємо H2 всередині materialsListSection */
-  font-size: 2rem; /* Розмір шрифту, налаштуйте за потребою */
-  color: #333; /* Колір тексту */
-  margin-top: 0; /* Відступ зверху вже може бути заданий materialsListSection. Якщо потрібно, змініть. */
-  margin-bottom: 20px; /* *** ОСНОВНИЙ ВІДСТУП ЗНИЗУ *** */
-  text-align: left; /* Вирівнювання тексту по лівому краю */
-  /* Горизонтальний padding для вирівнювання тексту з контентом блоків */
-  padding: 0 20px; /* Якщо .categoryBlock має padding 25px, то тут може знадобитися інше значення */
-  box-sizing: border-box; /* Для коректної ширини з padding */
+.materialsListSection h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: left;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 /* Оновлені стилі для блоків категорій */
 .categoryBlock {
-  width: 100%; /* Займає всю доступну ширину свого батька (.materialsListSection) */
-  max-width: 900px; /* Явно задаємо максимальну ширину, щоб відповідати іншим блокам */
-  margin-bottom: 30px; /* Відступ між категоріями */
-  background-color: #edb3db29; /* Дуже світлий фон, щоб виділити блок */
-  border-radius: 8px; /* Більш м'які заокруглені кути */
-  padding: 25px;
   width: 100%;
   max-width: 900px;
+  margin-bottom: 30px;
+  background-color: #edb3db29; /* Дуже світлий фон, щоб виділити блок */
+  border-radius: 8px;
+  padding: 25px;
   box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box; /* Включає padding та border у загальну ширину 900px */
@@ -88,7 +84,7 @@
   font-size: 1.8rem; /* Розмір для головних заголовків (Рекомендовано, Усі матеріали) */
   margin-bottom: 15px;
   color: #333;
-  border-bottom: #ff83c167; /* Більш яскравий синій колір для розділової лінії */
+  border-bottom: 1px solid #ff83c167; /* Більш яскравий синій колір для розділової лінії */
   padding-bottom: 10px;
   text-align: center; /* Центруємо заголовки секцій */
 }
@@ -100,7 +96,6 @@
   text-align: left; /* Вирівнювання підкатегорій по лівому краю */
   margin-top: 20px; /* Відступ зверху для візуального відділення */
 }
-
 
 .materialList {
   list-style: none;
@@ -133,4 +128,211 @@
 
 .materialItem a:hover {
   text-decoration: none; /* Прибираємо підкреслення при наведенні, оскільки вже є ефект фону */
+}
+
+/* --- Медіа-запити для адаптації --- */
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .materialsContainer {
+    padding-bottom: 30px;
+  }
+
+  .heroSection {
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    max-width: 760px; /* Зменшуємо max-width для планшетів */
+  }
+
+  .heroTitle {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .heroText {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .materialsListSection {
+    max-width: 760px; /* Зменшуємо max-width для планшетів */
+    margin-top: 5px;
+  }
+
+  .materialsListSection h2 {
+    font-size: 1.8rem; /* Зменшуємо розмір заголовка */
+    margin-bottom: 15px;
+    padding: 0 15px; /* Зменшуємо горизонтальний відступ */
+  }
+
+  .categoryBlock {
+    max-width: 760px; /* Забезпечуємо, що не перевищує загальну ширину */
+    margin-bottom: 25px;
+    padding: 20px; /* Зменшуємо внутрішній відступ */
+  }
+
+  .categoryBlock h2,
+  .categoryBlock h3 {
+    font-size: 1.6rem; /* Зменшуємо розмір головних заголовків категорій */
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .categoryBlock h3 {
+    font-size: 1.3rem; /* Зменшуємо розмір підкатегорій */
+    margin-top: 18px;
+  }
+
+  .materialList {
+    margin-top: 15px;
+  }
+
+  .materialItem {
+    margin-bottom: 10px;
+    padding: 10px 15px; /* Зменшуємо внутрішній відступ елементів */
+  }
+
+  .materialItem a {
+    font-size: 0.95rem; /* Зменшуємо шрифт посилань */
+  }
+
+  .materialItem:hover {
+    transform: translateX(6px); /* Менший зсув при наведенні */
+  }
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .materialsContainer {
+    padding-bottom: 20px;
+  }
+
+  .heroSection {
+    padding: 40px 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: none; /* Знімаємо обмеження max-width */
+  }
+
+  .heroTitle {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .heroText {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .materialsListSection {
+    margin-top: 0;
+    padding: 0; /* Знімаємо horizontal padding тут, щоб .categoryBlock керував ним */
+    max-width: 100%; /* Займаємо всю ширину на мобільних */
+  }
+
+  .materialsListSection h2 {
+    font-size: 1.5rem; /* Зменшуємо розмір головного заголовка сторінки */
+    margin-bottom: 15px;
+    text-align: center; /* Центруємо його на мобільних */
+    padding: 0 15px; /* Залишаємо невеликий відступ */
+  }
+
+  .categoryBlock {
+    width: 95%; /* Займаємо майже всю ширину, залишаючи невеликий відступ */
+    max-width: none; /* Знімаємо обмеження max-width */
+    margin-bottom: 20px;
+    padding: 15px; /* Ще менший внутрішній відступ */
+  }
+
+  .categoryBlock h2,
+  .categoryBlock h3 {
+    font-size: 1.4rem; /* Зменшуємо розмір заголовків категорій */
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    text-align: center; /* Центруємо заголовки секцій */
+  }
+
+  .categoryBlock h3 {
+    font-size: 1.2rem; /* Зменшуємо розмір підкатегорій */
+    margin-top: 15px;
+    text-align: center; /* Центруємо підкатегорії на мобільних */
+  }
+
+  .materialList {
+    margin-top: 10px;
+  }
+
+  .materialItem {
+    margin-bottom: 8px;
+    padding: 8px 12px; /* Зменшуємо внутрішній відступ елементів */
+  }
+
+  .materialItem a {
+    font-size: 0.85rem; /* Зменшуємо шрифт посилань */
+  }
+
+  .materialItem:hover {
+    transform: translateX(4px); /* Ще менший зсув */
+  }
+}
+
+/* Дуже маленькі мобільні екрани (до 480px) */
+@media (max-width: 480px) {
+  .materialsContainer {
+    padding-bottom: 15px;
+  }
+
+  .heroSection {
+    padding: 30px 10px;
+    margin-bottom: 15px;
+  }
+
+  .heroTitle {
+    font-size: 1.6rem;
+  }
+
+  .heroText {
+    font-size: 0.9rem;
+  }
+
+  .materialsListSection h2 {
+    font-size: 1.3rem; /* Ще менший розмір головного заголовка сторінки */
+    margin-bottom: 10px;
+    padding: 0 10px; /* Мінімальний відступ */
+  }
+
+  .categoryBlock {
+    width: 98%; /* Трохи більше, щоб було менше порожнього простору */
+    margin-bottom: 15px;
+    padding: 12px; /* Ще менший внутрішній відступ */
+  }
+
+  .categoryBlock h2,
+  .categoryBlock h3 {
+    font-size: 1.2rem; /* Ще менший розмір заголовків категорій */
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+  }
+
+  .categoryBlock h3 {
+    font-size: 1rem; /* Ще менший розмір підкатегорій */
+    margin-top: 12px;
+  }
+
+  .materialList {
+    margin-top: 8px;
+  }
+
+  .materialItem {
+    margin-bottom: 6px;
+    padding: 6px 10px; /* Мінімальні відступи елементів */
+  }
+
+  .materialItem a {
+    font-size: 0.8rem; /* Ще менший шрифт посилань */
+  }
+
+  .materialItem:hover {
+    transform: translateX(2px); /* Мінімальний зсув */
+  }
 }

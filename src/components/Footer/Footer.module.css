@@ -1,3 +1,5 @@
+/* Footer.module.css */
+
 .footer {
   background-image: url('/footer.png');
   background-size: cover;
@@ -5,7 +7,7 @@
   background-position: center;
   color: black;
   width: 100vw;
-  padding: 20px 0;
+  padding: 20px 0; /* Верхній/нижній padding залишаємо для вертикального простору */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,11 +19,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 20px; /* Горизонтальний padding для десктопу */
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .leftSection {
   flex: 1;
+  text-align: left;
 }
 
 .logo h1 {
@@ -47,9 +52,10 @@
 .navigation ul li a {
   text-decoration: none;
   color: black;
-  position: relative; 
-  padding-bottom: 5px; 
-  transition: color 0.3s ease; 
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .navigation ul li a::before {
@@ -58,17 +64,17 @@
   bottom: 0;
   left: 0;
   width: 0%;
-  height: 2px; 
-  background-color: black; 
-  transition: width 0.3s ease; 
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
 }
 
 .navigation ul li a:hover::before {
-  width: 100%; 
+  width: 100%;
 }
 
 .navigation ul li a:active {
-  color: #aa7799; 
+  color: #aa7799;
 }
 
 .rightSection {
@@ -101,4 +107,73 @@
   font-size: 0.9em;
   text-align: center;
   margin-top: 20px;
+  padding: 0 20px; /* Забезпечуємо горизонтальний padding для копірайту */
+}
+
+
+/* --- Медіа-запит для мобільних пристроїв (наприклад, до 768px) --- */
+@media (max-width: 768px) {
+  .footer {
+    padding: 15px 0; /* Трохи менший вертикальний padding */
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px; /* Зменшений горизонтальний padding для контейнера */
+    gap: 15px; /* Зменшений відступ між секціями на мобільних */
+  }
+
+  .leftSection {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px; 
+  }
+
+  .logo h1 {
+    font-size: 18px; /* Ще менший розмір логотипу */
+  }
+
+  .navigation {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 5px; 
+  }
+
+  .navigation ul {
+    flex-direction: column;
+    gap: 10px; /* Ще менший відступ між пунктами меню */
+    align-items: center;
+  }
+
+  .navigation ul li a {
+    font-size: 1em; /* Стандартний розмір шрифту */
+    padding: 5px 0; /* Додаємо невеликий вертикальний padding для зручності кліку */
+  }
+
+  .navigation ul li a::before,
+  .navigation ul li a:hover::before {
+    width: 0; /* Приховуємо підкреслення */
+  }
+
+  .rightSection {
+    width: 100%;
+    justify-content: center;
+    /* margin-bottom: 5px; */
+  }
+
+  .socialIcons {
+    gap: 10px; /* Ще менший відступ між іконками */
+  }
+
+  .socialIcon {
+    width: 20px; /* Розмір іконок залишаємо 20px, або зменшуємо до 18px, якщо треба */
+    height: 20px;
+  }
+
+  .copyright {
+    font-size: 0.75em; /* Ще менший шрифт для копірайту */
+    margin-top: 10px;
+    padding: 0 10px; /* Зменшений горизонтальний padding для копірайту */
+  }
 }

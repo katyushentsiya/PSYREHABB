@@ -7,6 +7,7 @@
   padding-bottom: 40px; /* Додамо трохи відступу знизу */
 }
 
+
 /* Стилі для першої секції - Головний екран */
 .heroSection {
   position: relative;
@@ -20,6 +21,7 @@
   width: 100vw;
   margin-bottom: 40px; /* Відступ між секціями */
 }
+
 
 .heroTitle {
   font-size: 2.5rem;
@@ -38,7 +40,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./userProfileImage.jpg'); /* Замініть шлях на ваше зображення */
+  background-image: url('/userProfileImage.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.4;
@@ -48,23 +50,22 @@
 /* НОВІ СТИЛІ: Окремий блок для кнопки перемикання історій */
 .personalStoriesToggleButtonBlock {
   width: 100%;
-  max-width: 900px; /* Ширина, як у UserProfile */
-  background-color: #edb3db29; /* Фон, як у UserProfile */
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
-  padding: 20px; /* Внутрішні відступи */
-  margin-top: 20px; /* Відступ від UserProfile */
-  margin-bottom: 40px; /* Відступ до наступної секції */
-  display: flex; /* Для вирівнювання кнопки */
-  justify-content: flex-start; /* Вирівнювання кнопки по лівому краю */
-  align-items: center; /* Центрування по вертикалі, якщо потрібно */
+  max-width: 900px; /* Обмежуємо ширину, як у UserProfile */
+  background-color: #edb3db29; /* Фон */
+  border-radius: 8px; /* Заокруглені кути */
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848); /* Тінь */
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .toggleStoriesButton {
-  /* Стилі для самої кнопки */
   padding: 12px 25px;
   font-size: 1.1rem;
-  /* Button variant="blue" вже має базові стилі, тут можна їх перевизначити */
 }
 
 
@@ -72,14 +73,15 @@
 .personalStoriesSection {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start;
   width: 100%;
-  max-width: 900px;
+  max-width: 900px; /* Обмежуємо ширину, як у UserProfile */
   padding: 40px 20px;
-  background-color: #edb3db29;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+  background-color: #edb3db29; /* Фон */
+  border-radius: 8px; /* Заокруглені кути */
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848); /* Тінь */
   margin-bottom: 40px;
+  box-sizing: border-box;
 }
 
 .personalStoriesTitle {
@@ -87,23 +89,25 @@
   color: #333;
   margin-bottom: 30px;
   text-align: center;
+  width: 100%;
 }
 
 .storiesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Адаптивна сітка карток */
-  gap: 10px; /* Відстань між картками */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  width: 100%;
 }
 
 .storyCard {
   background-color: #ffffff;
-  border: 0 2px 5px rgba(227, 110, 110, 0.848);
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848); /* Збережено тінь */
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Для рівномірного розподілу вмісту */
+  justify-content: space-between;
 }
 
 .authorInfo {
@@ -195,4 +199,319 @@
 
 .expandButton:hover {
   text-decoration: underline;
+}
+
+/* --- Медіа-запити для адаптації --- */
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .personalAreaContainer {
+    padding-bottom: 30px;
+  }
+
+  .heroSection {
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    max-width: 760px;
+    /* ВИДАЛЕНО: Стилі фону, заокруглення, тіні для heroSection на планшетах */
+  }
+
+  .heroTitle {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .heroText {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .personalStoriesToggleButtonBlock,
+  .personalStoriesSection {
+    max-width: 760px;
+    padding: 25px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    /* ЗБЕРЕЖЕНО: Стилі фону, заокруглення, тіні успадковуються з десктопних */
+  }
+
+  .toggleStoriesButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .personalStoriesTitle {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .storiesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+  }
+
+  .storyCard {
+    padding: 18px;
+  }
+
+  .authorInfo {
+    margin-bottom: 10px;
+  }
+
+  .authorPhoto {
+    width: 45px;
+    height: 45px;
+    margin-right: 8px;
+  }
+
+  .authorName {
+    font-size: 1rem;
+  }
+
+  .authorEmail {
+    font-size: 0.85rem;
+  }
+
+  .storyTitle {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .storyText {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .storyMeta {
+    margin-top: 12px;
+  }
+
+  .storyTopic {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .noStoriesMessage {
+    font-size: 1.1rem;
+    padding: 20px;
+  }
+
+  .deleteButton {
+    padding: 7px 14px;
+    font-size: 0.85rem;
+  }
+
+  .expandButton {
+    font-size: 13px;
+    padding: 3px 0;
+    margin-top: 5px;
+  }
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .personalAreaContainer {
+    padding-bottom: 20px;
+  }
+
+  .heroSection {
+    padding: 40px 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+
+    /* ВИДАЛЕНО: Стилі фону, заокруглення, тіні для heroSection на мобільних */
+    /* background-color: #edb3db29; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848); */
+  }
+
+  .heroTitle {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .heroText {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .personalStoriesToggleButtonBlock,
+  .personalStoriesSection {
+    max-width: 95%;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    /* ЗБЕРЕЖЕНО: Стилі фону, заокруглення, тіні на мобільних */
+    background-color: #edb3db29; /* Повертаємо фон */
+    border-radius: 8px; /* Повертаємо заокруглення */
+    box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848); /* Повертаємо тінь */
+    border: none; /* Прибираємо, якщо ви не хочете додаткової рамки */
+  }
+  .personalStoriesToggleButtonBlock {
+    justify-content: center;
+  }
+
+  .toggleStoriesButton {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .personalStoriesTitle {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .storiesGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .storyCard {
+    padding: 12px;
+  }
+
+  .authorInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .authorPhoto {
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .authorName {
+    font-size: 0.95rem;
+  }
+
+  .authorEmail {
+    font-size: 0.75rem;
+  }
+
+  .storyTitle {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .storyText {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .storyMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 8px;
+    gap: 5px;
+  }
+
+  .storyTopic {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .noStoriesMessage {
+    font-size: 1rem;
+    padding: 15px;
+  }
+
+  .deleteButton {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+
+  .expandButton {
+    font-size: 11px;
+    padding: 2px 0;
+    margin-top: 3px;
+  }
+}
+
+/* Дуже маленькі мобільні екрани (до 480px) */
+@media (max-width: 480px) {
+  .personalAreaContainer {
+    padding-bottom: 15px;
+  }
+
+  .heroSection {
+    padding: 30px 10px;
+    margin-bottom: 15px;
+    /* Стилі фону, заокруглення, тіні вже успадковуються з 767px і вище, але їх там немає */
+  }
+
+  .heroTitle {
+    font-size: 1.6rem;
+  }
+
+  .heroText {
+    font-size: 0.9rem;
+  }
+
+  .personalStoriesToggleButtonBlock,
+  .personalStoriesSection {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    /* Стилі фону, заокруглення, тіні успадковуються з 767px і вище */
+  }
+
+  .toggleStoriesButton {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .personalStoriesTitle {
+    font-size: 1.3rem;
+  }
+
+  .storyCard {
+    padding: 10px;
+  }
+
+  .authorPhoto {
+    width: 35px;
+    height: 35px;
+  }
+
+  .authorName {
+    font-size: 0.9rem;
+  }
+
+  .authorEmail {
+    font-size: 0.7rem;
+  }
+
+  .storyTitle {
+    font-size: 0.95rem;
+  }
+
+  .storyText {
+    font-size: 0.75rem;
+  }
+
+  .storyTopic {
+    font-size: 0.7rem;
+  }
+
+  .noStoriesMessage {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .deleteButton {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+
+  .expandButton {
+    font-size: 10px;
+  }
 }

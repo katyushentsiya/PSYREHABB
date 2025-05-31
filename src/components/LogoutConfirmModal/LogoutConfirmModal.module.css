@@ -22,6 +22,7 @@
   text-align: center;
   position: relative;
   animation: fadeIn 0.3s ease-out; /* Анімація появи */
+  box-sizing: border-box;
 }
 
 .modalTitle {
@@ -50,7 +51,61 @@
   cursor: pointer;
   font-size: 1em;
   font-weight: bold;
+  min-width: 120px; /* Мінімальна ширина для кнопок */
 }
+
+
+/* --- Медіа-запити для адаптивності --- */
+
+/* Для дуже малих екранів (наприклад, мобільні в портретному режимі) */
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 20px; /* Зменшуємо відступ */
+    width: 95%; /* Трохи збільшуємо ширину, щоб краще використовувати простір */
+  }
+
+  .modalTitle {
+    font-size: 1.5em; /* Зменшуємо розмір заголовка */
+    margin-bottom: 15px;
+  }
+
+  .modalMessage {
+    font-size: 1em; /* Зменшуємо розмір тексту повідомлення */
+    margin-bottom: 20px;
+  }
+
+  .modalActions {
+    flex-direction: column; /* Кнопки розташовуються одна під одною */
+    gap: 15px; /* Зменшуємо відступ між кнопками */
+  }
+
+  .modalActions .Button {
+    width: 100%; /* Кнопки займають всю доступну ширину */
+    max-width: 250px; /* Обмежуємо максимальну ширину кнопок, щоб не розтягувались занадто */
+    margin: 0 auto; /* Центруємо кнопки */
+    padding: 12px 20px; /* Трохи збільшуємо вертикальний відступ для зручності натискання */
+  }
+}
+
+/* Для планшетів (або більших мобільних в альбомному режимі) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .modalContent {
+    padding: 25px; /* Трохи більші відступи, ніж на маленьких */
+  }
+
+  .modalTitle {
+    font-size: 1.7em;
+  }
+
+  .modalMessage {
+    font-size: 1.05em;
+  }
+
+  .modalActions {
+    gap: 15px; /* Трохи зменшуємо відступ */
+  }
+}
+
 
 /* Анімація появи */
 @keyframes fadeIn {

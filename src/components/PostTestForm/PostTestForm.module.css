@@ -23,6 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: center; /* Центруємо вміст */
+  box-sizing: border-box; /* Важливо для padding + width */
 }
 
 .header {
@@ -134,7 +135,6 @@
   padding: 10px 25px; /* Менший падінг кнопки */
   font-size: 1rem; /* Менший шрифт кнопки */
   min-width: 150px; /* Менша мінімальна ширина */
-  /* Стилі кнопки з модального вікна входу */
   background-color: #a1c4fd; /* Блакитний колір */
   color: white;
   border: none;
@@ -145,4 +145,171 @@
 
 .submitButton:hover {
   background-color: #7a9dfa; /* Темніший блакитний при наведенні */
+}
+
+
+/* --- Медіа-запити для адаптації --- */
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .postTestFormContainer {
+    max-width: 380px; /* Зменшено: Було 400px */
+    padding: 20px 25px; /* Зменшено: Було 20px 30px */
+  }
+
+  .title {
+    font-size: 1.35rem; /* Зменшено */
+  }
+
+  .closeButton {
+    font-size: 1.6rem; /* Зменшено */
+  }
+
+  .formQuestion {
+    font-size: 1rem; /* Зменшено: Було 1.05rem */
+    margin-bottom: 18px; /* Зменшено */
+  }
+
+  .optionsGroup {
+    gap: 9px; /* Зменшено: Було 10px */
+    margin-bottom: 18px; /* Зменшено */
+  }
+
+  .optionLabel {
+    padding: 9px 12px; /* Зменшено */
+  }
+
+  .optionLabel input[type="radio"] {
+    width: 16px; /* Зменшено */
+    height: 16px;
+    margin-right: 9px; /* Зменшено */
+  }
+
+  .optionLabel input[type="radio"]:checked::before {
+    width: 6px; /* Зменшено */
+    height: 6px;
+  }
+
+  .optionText {
+    font-size: 0.9rem; /* Зменшено: Було 0.95rem */
+  }
+
+  .submitButton {
+    padding: 8px 20px; /* Зменшено */
+    font-size: 0.9rem; /* Зменшено */
+    min-width: 130px; /* Зменшено */
+  }
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .postTestFormContainer {
+    width: 90%; /* Зменшено: Було 95% */
+    max-width: 320px; /* ДОДАНО: Встановлюємо додаткове обмеження max-width для мобільних */
+    padding: 15px 18px; /* Зменшено: Було 15px 20px */
+  }
+
+  .header {
+    margin-bottom: 12px; /* Зменшено */
+  }
+
+  .title {
+    font-size: 1.25rem; /* Зменшено: Було 1.3rem */
+  }
+
+  .closeButton {
+    font-size: 1.4rem; /* Зменшено: Було 1.5rem */
+  }
+
+  .formQuestion {
+    font-size: 0.95rem; /* Зменшено: Було 1rem */
+    margin-bottom: 15px; /* Зменшено: Було 18px */
+  }
+
+  .optionsGroup {
+    gap: 7px; /* Зменшено: Було 8px */
+    margin-bottom: 15px; /* Зменшено: Було 18px */
+  }
+
+  .optionLabel {
+    padding: 7px 9px; /* Зменшено: Було 8px 10px */
+  }
+
+  .optionLabel input[type="radio"] {
+    width: 15px; /* Зменшено: Було 16px */
+    height: 15px;
+    margin-right: 7px; /* Зменшено: Було 8px */
+  }
+
+  .optionLabel input[type="radio"]:checked::before {
+    width: 5px; /* Зменшено: Було 6px */
+    height: 5px;
+  }
+
+  .optionText {
+    font-size: 0.85rem; /* Зменшено: Було 0.9rem */
+  }
+
+  .submitButton {
+    padding: 7px 18px; /* Зменшено: Було 8px 20px */
+    font-size: 0.85rem; /* Зменшено: Було 0.9rem */
+    min-width: 120px; /* Зменшено: Було 130px */
+    margin-top: 8px; /* Зменшено */
+  }
+}
+
+/* Дуже маленькі мобільні екрани (до 480px) */
+@media (max-width: 480px) {
+  .postTestFormContainer {
+    width: 95%; /* Трохи більше, ніж 90%, щоб не було надто вузько */
+    max-width: 280px; /* ДОДАНО: Ще менше обмеження max-width */
+    padding: 10px 12px; /* Зменшено: Було 12px 15px */
+  }
+
+  .header {
+    margin-bottom: 10px; /* Зменшено */
+  }
+
+  .title {
+    font-size: 1.15rem; /* Зменшено: Було 1.2rem */
+  }
+
+  .closeButton {
+    font-size: 1.3rem; /* Зменшено: Було 1.4rem */
+  }
+
+  .formQuestion {
+    font-size: 0.9rem; /* Зменшено: Було 0.95rem */
+    margin-bottom: 12px; /* Зменшено: Було 15px */
+  }
+
+  .optionsGroup {
+    gap: 5px; /* Зменшено: Було 6px */
+    margin-bottom: 12px; /* Зменшено: Було 15px */
+  }
+
+  .optionLabel {
+    padding: 6px 7px; /* Зменшено: Було 7px 8px */
+  }
+
+  .optionLabel input[type="radio"] {
+    width: 14px; /* Зменшено: Було 15px */
+    height: 14px;
+    margin-right: 5px; /* Зменшено: Було 6px */
+  }
+
+  .optionLabel input[type="radio"]:checked::before {
+    width: 4px; /* Зменшено: Було 5px */
+    height: 4px;
+  }
+
+  .optionText {
+    font-size: 0.8rem; /* Зменшено: Було 0.85rem */
+  }
+
+  .submitButton {
+    padding: 6px 15px; /* Зменшено: Було 7px 18px */
+    font-size: 0.8rem; /* Зменшено: Було 0.85rem */
+    min-width: 100px; /* Зменшено: Було 120px */
+  }
 }

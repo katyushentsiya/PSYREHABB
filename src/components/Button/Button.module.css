@@ -1,10 +1,17 @@
 .button {
-  padding: 10px 50px;
+  padding: 10px 50px; /* Це ваш поточний padding */
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
-  color: black; 
+  color: black;
+  text-decoration: none; /* Важливо для Link, щоб прибрати підкреслення */
+  display: inline-flex; /* Щоб padding застосовувався коректно і для Link, і для Button */
+  align-items: center; /* Для вертикального вирівнювання тексту */
+  justify-content: center; /* Для горизонтального вирівнювання тексту */
+  box-sizing: border-box; /* Забезпечить правильний розрахунок розмірів з padding */
+  min-width: 150px; 
+  height: 40px; 
 }
 
 .transparent {
@@ -52,4 +59,40 @@
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .button {
+    padding: 10px 30px;
+    font-size: 15px;
+    min-width: 130px; /* Зменшити min-width для планшетів */
+    height: 38px; /* Адаптувати висоту */
+  }
+  /* ... адаптивні стилі для .icon, якщо вони є ... */
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .button {
+    padding: 8px 20px;
+    font-size: 14px;
+    min-width: 120px; /* Зменшити min-width для мобільних */
+    height: 36px; /* Адаптувати висоту */
+    /* width: auto; /* Забезпечимо, що кнопка не розтягується на всю ширину */
+    /* min-width: unset; /* Знімаємо можливі мінімальні ширини */
+    /* Якщо ви хочете, щоб на мобільних кнопки були гнучкими, можна видалити min-width тут */
+  }
+  /* ... адаптивні стилі для .icon, якщо вони є ... */
+}
+
+/* Дуже маленькі мобільні екрани (до 480px) */
+@media (max-width: 480px) {
+  .button {
+    padding: 6px 15px;
+    font-size: 13px;
+    min-width: 100px; /* Ще менший min-width */
+    height: 32px; /* Адаптувати висоту */
+  }
+  /* ... адаптивні стилі для .icon, якщо вони є ... */
 }

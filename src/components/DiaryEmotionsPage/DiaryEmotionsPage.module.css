@@ -127,3 +127,213 @@
   font-size: 1.1rem;
   border-radius: 8px;
 }
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .diaryEmotionsContainer {
+    padding-bottom: 30px;
+  }
+
+  .heroSection {
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    max-width: 760px; /* Зменшуємо max-width для планшетів */
+  }
+
+  .heroTitle {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .heroText {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .diaryFormSection {
+    max-width: 760px; /* Зменшуємо max-width для планшетів */
+    padding: 15px; /* Зменшуємо padding */
+    margin-top: 25px;
+  }
+
+  .formGroup {
+    margin-bottom: 15px; /* Зменшуємо відступ */
+  }
+
+  .label {
+    font-size: 0.95rem; /* Зменшуємо шрифт */
+    margin-bottom: 4px;
+  }
+
+  .input,
+  .textarea {
+    padding: 8px; /* Зменшуємо padding */
+    font-size: 0.95rem; /* Зменшуємо шрифт */
+  }
+
+  .textarea {
+    min-height: 120px; /* Зменшуємо мінімальну висоту */
+  }
+
+  .topics {
+    gap: 8px; /* Зменшуємо відступ */
+    margin-top: 12px;
+  }
+
+  .topicOption {
+    padding: 7px 12px; /* Зменшуємо padding */
+    font-size: 0.95rem; /* Зменшуємо шрифт */
+  }
+
+  .topicOption input[type="radio"] {
+    width: 16px; /* Зменшуємо розмір радіо-баттона */
+    height: 16px;
+    margin-right: 6px; /* Зменшуємо відступ */
+  }
+
+  .diaryForm button[type="submit"] {
+    margin-top: 15px;
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .diaryEmotionsContainer {
+    padding-bottom: 20px;
+  }
+
+  .heroSection {
+    padding: 40px 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: none; /* Знімаємо обмеження max-width */
+  }
+
+  .heroTitle {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .heroText {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .diaryFormSection {
+    max-width: 95%; /* Займаємо майже всю ширину */
+    padding: 12px; /* Ще менший padding */
+    margin-top: 20px;
+  }
+
+  .formGroup {
+    margin-bottom: 12px; /* Ще менший відступ */
+  }
+
+  .label {
+    font-size: 0.9rem; /* Ще менший шрифт */
+    margin-bottom: 3px;
+  }
+
+  .input,
+  .textarea {
+    padding: 7px; /* Ще менший padding */
+    font-size: 0.9rem; /* Ще менший шрифт */
+  }
+
+  .textarea {
+    min-height: 100px; /* Ще менша мінімальна висота */
+  }
+
+  .topics {
+    gap: 6px; /* Ще менший відступ */
+    margin-top: 10px;
+    justify-content: center; /* Центруємо теми на мобільних */
+  }
+
+  .topicOption {
+    padding: 6px 10px; /* Ще менший padding */
+    font-size: 0.85rem; /* Ще менший шрифт */
+    border-radius: 15px; /* Трохи менш заокруглені кути */
+  }
+
+  .topicOption input[type="radio"] {
+    width: 15px; /* Ще менший розмір радіо-баттона */
+    height: 15px;
+    margin-right: 5px; /* Ще менший відступ */
+  }
+
+  .diaryForm button[type="submit"] {
+    margin-top: 12px;
+    padding: 9px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Дуже маленькі мобільні екрани (до 480px) */
+@media (max-width: 480px) {
+  .diaryEmotionsContainer {
+    padding-bottom: 15px;
+  }
+
+  .heroSection {
+    padding: 30px 10px;
+    margin-bottom: 15px;
+  }
+
+  .heroTitle {
+    font-size: 1.6rem;
+  }
+
+  .heroText {
+    font-size: 0.9rem;
+  }
+
+  .diaryFormSection {
+    max-width: 98%; /* Трохи більше, щоб уникнути занадто вузької форми */
+    padding: 10px; /* Мінімальний padding */
+    margin-top: 15px;
+  }
+
+  .formGroup {
+    margin-bottom: 10px; /* Мінімальний відступ */
+  }
+
+  .label {
+    font-size: 0.85rem; /* Мінімальний шрифт */
+  }
+
+  .input,
+  .textarea {
+    padding: 6px; /* Мінімальний padding */
+    font-size: 0.85rem; /* Мінімальний шрифт */
+  }
+
+  .textarea {
+    min-height: 80px; /* Мінімальна висота */
+  }
+
+  .topics {
+    gap: 5px; /* Мінімальний відступ */
+    margin-top: 8px;
+  }
+
+  .topicOption {
+    padding: 5px 8px; /* Мінімальний padding */
+    font-size: 0.8rem; /* Мінімальний шрифт */
+    border-radius: 12px; /* Ще менш заокруглені кути */
+  }
+
+  .topicOption input[type="radio"] {
+    width: 14px; /* Мінімальний розмір радіо-баттона */
+    height: 14px;
+    margin-right: 4px; /* Мінімальний відступ */
+  }
+
+  .diaryForm button[type="submit"] {
+    margin-top: 10px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+}

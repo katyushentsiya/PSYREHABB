@@ -1,32 +1,33 @@
+/* Header.module.css */
+
 .header {
-  /* Основні стилі хедера */
   background-image: url('/background-header.jpg');
-  background-size: cover; 
+  background-size: cover;
   background-repeat: no-repeat;
-  height: 80px; 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  padding: 20px; /* Зменшено відступи з боків для кращої адаптивності */
-  color: black; /* Колір тексту за замовчуванням */
-  position: fixed; /* Фіксуємо хедер у верхній частині вікна */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  color: black;
+  position: fixed;
   top: 0;
-  left: 0; /* Займає всю ширину від лівого краю */
-  width: 100%; /* Займає всю ширину */
-  z-index: 10; /* Забезпечує відображення поверх іншого контенту */
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  box-sizing: border-box;
 }
 
-/* Обмеження ширини хедера на великих екранах та центрування */
 .headerWrapper {
   max-width: 1180px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  display: flex;
   align-items: center;
+  gap: 40px;
 }
 
 .leftSection {
-  margin-left: 10%; 
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 .logo h1 {
@@ -35,11 +36,16 @@
   color: black;
 }
 
+.logo h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .navigation {
   display: flex;
   align-items: center;
-  margin-left: auto; 
-  flex-shrink: 0; 
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .navigation ul {
@@ -53,9 +59,10 @@
 .navigation ul li a {
   text-decoration: none;
   color: black;
-  position: relative; 
-  padding-bottom: 5px; 
-  transition: color 0.3s ease; 
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .navigation ul li a::before {
@@ -64,21 +71,123 @@
   bottom: 0;
   left: 0;
   width: 0%;
-  height: 2px; 
-  background-color: black; 
-  transition: width 0.3s ease; 
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
 }
 
 .navigation ul li a:hover::before {
-  width: 100%; 
+  width: 100%;
 }
 
 .navigation ul li a:active {
-  color: #aa7799; /* Зміна кольору при натисканні */
+  color: #aa7799;
 }
 
 .rightSection {
-  margin-left: auto; 
-  margin-right: 10%; 
+  flex-shrink: 0;
+  display: flex; /* Показано на десктопах */
+  align-items: center;
+  margin-left: 20px;
 }
 
+.mobileAuthButtons {
+  display: none; /* Приховано на десктопах */
+}
+
+.hamburgerMenu {
+  display: none; /* Приховано на десктопах */
+  font-size: 30px;
+  cursor: pointer;
+  color: black;
+  z-index: 20;
+  margin-left: 20px;
+}
+
+/* Кнопка закриття мобільного меню (хрестик) */
+.closeMobileMenu {
+  display: none; /* Приховано за замовчуванням */
+  /* Оновлені стилі для розміру та позиції */
+  font-size: 45px; /* Збільшений розмір хрестика */
+  position: absolute;
+  top: 15px; /* Трохи вище, щоб не заважав бургеру */
+  right: 25px; /* Позиціонування від правого краю */
+  cursor: pointer;
+  color: #333;
+  z-index: 21; /* Перекриває всі інші елементи */
+}
+
+
+/* --- Стилі для мобільних пристроїв --- */
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+    padding: 0 15px;
+  }
+
+  .headerWrapper {
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .navigation {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(248, 220, 220, 0.98);
+    z-index: 15;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .navigation.mobileOpen {
+    display: flex;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .navigation ul {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .navigation ul li a {
+    font-size: 1.8rem;
+    color: #333;
+  }
+
+  .navigation ul li a::before,
+  .navigation ul li a:hover::before {
+    display: none;
+  }
+
+  .rightSection {
+    display: none; /* Приховуємо десктопні кнопки */
+  }
+
+  .hamburgerMenu {
+    display: block; /* Показати гамбургер на мобільних */
+  }
+
+  .closeMobileMenu {
+    display: block; /* Показати хрестик на мобільних */
+  }
+
+  .mobileAuthButtons {
+    display: block; /* Показати мобільні кнопки увійти/вийти */
+    margin-top: 40px;
+  }
+
+  .mobileAuthButtons button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
+}

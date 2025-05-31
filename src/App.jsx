@@ -46,8 +46,6 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/" element={<Home />} />
-             * Залиште лише один, або якщо Home - це окрема сторінка, дайте їй унікальний шлях, наприклад '/home'.
-             * Я залишаю MainPage, оскільки вона перша і, ймовірно, є вашою фактичною "головною". */}
             <Route path="/register" element={<RegistPage />} />
 
             {/* ЗАХИЩЕНІ МАРШРУТИ - обгортаємо їх у ProtectedRoute */}

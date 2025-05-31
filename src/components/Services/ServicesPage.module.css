@@ -1,37 +1,121 @@
+/* Основні стилі для десктопу (збільшені, як ви просили) */
 .pageContainer {
-  max-width: 1180px;
+  max-width: 1280px; /* Збільшимо max-width для більшого простору на десктопах */
   text-align: center;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem; /* Збільшений padding для десктопів */
 }
 
 .section {
-  padding: 80px 20px;
+  padding: 100px 40px; /* Збільшений padding для секцій на десктопах */
   border-bottom: 1px solid #040404;
 }
 
 .section h2 {
-  font-size: 1.8rem; 
+  font-size: 2.5rem; /* Збільшений розмір заголовка секції */
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem; /* Більший відступ під заголовком */
+  color: #333; /* Додамо колір для контрасту */
 }
 
 .section p {
-  font-size: 1.4rem;
-  line-height: 1.6;
+  font-size: 1.2rem; /* Або 1.2rem, якщо 1.4rem здається завеликим для основного тексту */
+  line-height: 1.8; /* Збільшимо міжрядковий інтервал для кращої читабельності */
   color: #444;
-  text-align: justify; 
+  text-align: justify;
+  margin-bottom: 1rem; /* Відступ між параграфами */
 }
 
 .description {
-  margin-top: 1.8rem;
-  font-size: 1.4rem;
-  line-height: 1.6;
+  margin-top: 2rem; /* Більший відступ зверху */
+  font-size: 1.2rem; /* Може бути такий самий, як p, або трохи інший */
+  line-height: 1.8;
   color: #444;
-  text-align: justify; 
+  text-align: justify;
 }
 
 .section:nth-child(odd) {
-  background-color: #edb3db29; 
+  background-color: #edb3db29;
 }
 
+/* --- Медіа-запити для адаптації --- */
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .pageContainer {
+    max-width: 960px; /* Адаптуємо max-width для планшетів */
+    padding: 2.5rem; /* Зменшуємо padding */
+  }
+
+  .section {
+    padding: 80px 30px; /* Зменшений padding для секцій */
+  }
+
+  .section h2 {
+    font-size: 2.2rem; /* Трохи менший заголовок */
+    margin-bottom: 1.5rem;
+  }
+
+  .section p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  .description {
+    margin-top: 1.8rem;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+}
+
+/* Мобільні телефони (до 768px) */
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 1.5rem; /* Значно зменшений padding для мобільних */
+    /* max-width не потрібен, оскільки padding і так обмежить контент */
+  }
+
+  .section {
+    padding: 50px 15px; /* Ще менший padding для секцій */
+  }
+
+  .section h2 {
+    font-size: 1.8rem; /* Ще менший заголовок */
+    margin-bottom: 1rem;
+  }
+
+  .section p {
+    font-size: 1rem; /* Стандартний розмір шрифту для читабельності на мобільних */
+    line-height: 1.6;
+    text-align: left; /* Часто на мобільних justify не виглядає добре, краще left */
+  }
+
+  .description {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left; /* Змінюємо на left */
+  }
+}
+
+/* Дуже маленькі мобільні екрани (до 480px) */
+@media (max-width: 480px) {
+  .pageContainer {
+    padding: 1rem; /* Мінімальний padding */
+  }
+
+  .section {
+    padding: 40px 10px; /* Мінімальний padding для секцій */
+  }
+
+  .section h2 {
+    font-size: 1.5rem; /* Ще менший заголовок */
+    margin-bottom: 0.8rem;
+  }
+
+  .section p,
+  .description {
+    font-size: 0.95rem; /* Трохи менший шрифт */
+    line-height: 1.5;
+  }
+}

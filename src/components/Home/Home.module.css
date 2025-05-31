@@ -1,92 +1,122 @@
+/* Home.module.css */
+
 .container {
   display: flex;
   position: relative;
-  min-height: calc(100vh - 80px); /* Припускаємо, що висота хедера 60px */
+  min-height: calc(100vh - 60px); /* Висота хедера 60px на мобільних */
   align-items: center;
-  justify-content: space-between;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-.containerMobile {
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 20px;
+  justify-content: flex-start; /* Вирівнювання на мобільних */
+  padding: 20px; /* Базовий padding для мобільних */
+  flex-direction: column; /* За замовчуванням стовпець на мобільних */
+  text-align: center; /* Центруємо текст на мобільних */
+  box-sizing: border-box; /* Включаємо padding у ширину/висоту */
 }
 
 .mainBlock {
-  width: 55%;
-  margin-top: 0; /* Прибираємо початковий великий відступ */
-  text-align: left;
-}
-
-.mainBlockMobile {
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
+  width: 100%; /* За замовчуванням 100% ширини на мобільних */
+  margin-top: 30px; /* Відступ зверху на мобільних */
+  text-align: center; /* Центруємо текст на мобільних */
 }
 
 .mainBlock h2 {
-  font-size: 48px;
+  font-size: 32px; /* Менший розмір заголовка на мобільних */
   line-height: 1.2;
   color: #333;
-}
-
-.mainBlockMobile h2 {
-  font-size: 32px;
+  margin-bottom: 15px; /* Невеликий відступ */
 }
 
 .mainBlock p {
   margin-top: 0;
-  margin-bottom: 50px;
+  margin-bottom: 30px; /* Менший відступ знизу на мобільних */
   width: 100%;
-  text-align: right;
-  font-size: 24px;
+  text-align: center; /* Центруємо текст на мобільних */
+  font-size: 18px; /* Менший розмір тексту на мобільних */
   line-height: 1.5;
   color: #555;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.mainBlockMobile p {
-  text-align: center;
-  font-size: 18px;
   margin-left: 0;
   margin-right: 0;
-  margin-bottom: 30px;
+  padding: 0 10px; /* Трохи горизонтального відступу */
 }
 
 .mainBlock button {
-  width: 215px;
-  font-size: 24px;
+  width: 180px; /* Менша ширина кнопки на мобільних */
+  font-size: 18px; /* Менший розмір шрифту кнопки на мобільних */
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   display: block;
-}
-
-.mainBlockMobile button {
-  width: 150px;
-  font-size: 18px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 12px 20px; /* Зручний padding для кнопки */
 }
 
 .backgroundImage {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 55%;
-  height: 100%;
+  /* На мобільних приховуємо фонове зображення або змінюємо його позицію */
+  position: relative; /* Щоб не виходила за межі */
+  width: 100%; /* Займає всю ширину */
+  height: 250px; /* Фіксована висота для мобільних */
   background-image: url('/main.jpg');
   background-repeat: no-repeat;
-  background-position: right;
-  background-size: contain;
-  z-index: -1;
+  background-position: center; /* Центруємо зображення */
+  background-size: contain; /* Зображення вміщається, не обрізається */
+  z-index: -1; /* За зображенням */
+  order: -1; /* Розміщуємо зображення перед текстом на мобільних, якщо потрібно */
+  margin-bottom: 5px; /* Відступ від тексту */
 }
 
 .requestButtonLink {
-  text-decoration: none; /* Щоб прибрати підкреслення у Link */
+  text-decoration: none;
 }
 
+
+/* --- Медіа-запит для десктопів (наприклад, від 768px і більше) --- */
+@media (min-width: 768px) {
+  .container {
+    min-height: calc(100vh - 80px); /* Висота хедера 80px на десктопах */
+    flex-direction: row; /* На десктопах елементи в ряд */
+    justify-content: space-between; /* Розділяємо простір між mainBlock та backgroundImage */
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: left; /* Текст вирівнюємо по лівому краю */
+  }
+
+  .mainBlock {
+    width: 55%; /* Змінюємо ширину на десктопах */
+    margin-top: 0; /* Прибираємо відступ зверху */
+    text-align: left; /* Вирівнювання по лівому краю */
+  }
+
+  .mainBlock h2 {
+    font-size: 48px; /* Більший розмір заголовка на десктопах */
+    margin-bottom: 10px;
+  }
+
+  .mainBlock p {
+    margin-bottom: 50px; /* Більший відступ знизу на десктопах */
+    text-align: right; /* Текст знову по правому краю, як було у вашому початковому коді */
+    font-size: 24px; /* Більший розмір тексту на десктопах */
+    margin-left: auto; /* Для text-align: right */
+    margin-right: 0; /* Для text-align: right */
+    width: 100%; /* Займає всю доступну ширину */
+    max-width: 500px; /* Обмеження ширини параграфа */
+  }
+
+  .mainBlock button {
+    width: 215px; /* Більша ширина кнопки на десктопах */
+    font-size: 24px; /* Більший розмір шрифту кнопки на десктопах */
+    margin-left: 0; /* Для text-align: left */
+    margin-right: auto; /* Для text-align: left */
+    display: block; /* Забезпечуємо, що кнопка блок */
+  }
+
+  .backgroundImage {
+    position: absolute; /* Абсолютне позиціонування на десктопах */
+    top: 0;
+    right: 0;
+    width: 55%;
+    height: 100%;
+    background-position: right; /* Позиція справа */
+    background-size: contain; /* Вміщається */
+    z-index: -1;
+    order: unset; /* Відновлюємо порядок */
+    margin-bottom: 0;
+  }
+}

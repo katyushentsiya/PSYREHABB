@@ -1,23 +1,109 @@
+/* AboutUs.module.css */
+
 .aboutUsSection {
-  padding: 80px 20px;
+  padding: 80px 20px; /* Десктопний padding (верх/низ, ліво/право) */
+  box-sizing: border-box; /* Забезпечуємо, що padding враховується в ширині */
 }
 
 .container {
   max-width: 1180px;
   margin: 0 auto;
-  text-align: center;
+  text-align: center; /* Центрує заголовок та, за замовчуванням, інші блоки */
+  width: 100%; /* Займає всю доступну ширину */
+  padding: 0 20px; /* Додано горизонтальний padding для десктопу, щоб уникнути "прилипання" до країв */
+  box-sizing: border-box; /* Важливо для padding */
 }
 
 .container h2 {
-  font-size: 2.8em;
+  font-size: 2.8em; /* Десктопний розмір заголовка */
   margin-bottom: 30px;
   color: #333;
 }
 
 .description {
-  font-size: 1.4em;
+  font-size: 1.4em; /* Десктопний розмір тексту */
   line-height: 1.8;
   color: #555;
   margin-bottom: 40px;
-  text-align: justify; 
+  text-align: justify; /* *** ТЕПЕР JUSTIFY НА ВСІХ ЕКРАНАХ *** */
+  max-width: 900px; /* Обмежуємо ширину тексту для кращої читабельності */
+  margin-left: auto; /* Центруємо блок тексту */
+  margin-right: auto; /* Центруємо блок тексту */
+  /* Важливо для justify на мобільних: додаємо hyphens */
+  hyphens: auto; /* Дозволяє браузеру розставляти переноси */
+  word-break: break-word; /* Дозволяє перенос слів, якщо вони дуже довгі */
+}
+
+/* --- Медіа-запити для адаптації --- */
+
+/* Планшети (від 768px до 1024px) */
+@media (max-width: 1024px) {
+  .aboutUsSection {
+    padding: 60px 15px; /* Менший padding */
+  }
+
+  .container {
+    padding: 0 15px; /* Менший горизонтальний padding */
+  }
+
+  .container h2 {
+    font-size: 2.2em; /* Менший заголовок */
+    margin-bottom: 25px;
+  }
+
+  .description {
+    font-size: 1.2em; /* Менший текст */
+    line-height: 1.7;
+    margin-bottom: 30px;
+    max-width: 700px; /* Зменшення максимальної ширини тексту */
+    /* text-align: justify; - успадковується, тому не потрібно повторювати */
+  }
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .aboutUsSection {
+    padding: 40px 10px; /* Ще менший padding */
+  }
+
+  .container {
+    padding: 0 10px; /* Ще менший горизонтальний padding */
+  }
+
+  .container h2 {
+    font-size: 1.8em; /* Ще менший заголовок */
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 1em; /* Звичайний розмір тексту для мобільних */
+    line-height: 1.6;
+    margin-bottom: 25px;
+    /* text-align: justify; - успадковується, тому не потрібно повторювати */
+    max-width: 100%; /* Займає всю доступну ширину контейнера */
+    padding: 0; /* Прибираємо додатковий padding, якщо він був */
+  }
+}
+
+/* Мобільні телефони (дуже маленькі екрани, до 480px) */
+@media (max-width: 480px) {
+  .aboutUsSection {
+    padding: 30px 5px; /* Мінімальний padding */
+  }
+
+  .container {
+    padding: 0 5px; /* Мінімальний горизонтальний padding */
+  }
+
+  .container h2 {
+    font-size: 1.5em; /* Ще менший заголовок */
+    margin-bottom: 15px;
+  }
+
+  .description {
+    font-size: 0.95em; /* Ще менший текст */
+    line-height: 1.5;
+    margin-bottom: 20px;
+    /* text-align: justify; - успадковується, тому не потрібно повторювати */
+  }
 }

@@ -1,21 +1,24 @@
+/* components/UserProfile/UserProfile.module.css */
+
 .userSection {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start;
   width: 100%;
   max-width: 900px;
   padding: 40px 20px;
-  background-color: #edb3db29;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+  background-color: #edb3db29; /* Залишаємо базові стилі */
+  border-radius: 8px; /* Залишаємо базові стилі */
+  box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848); /* Залишаємо базові стилі */
   margin-bottom: 40px;
+  box-sizing: border-box;
 }
-
 
 .userProfile {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
+  width: 100%;
 }
 
 .profileImage {
@@ -44,7 +47,146 @@
 .userNavigation {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: flex-start;
   gap: 15px;
   width: 100%;
+}
+
+
+/* --- Медіа-запити для адаптації --- */
+
+/* Планшети (до 1024px) */
+@media (max-width: 1024px) {
+  .userSection {
+    max-width: 760px;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+    /* Фон, тінь, заокруглення успадковуються з десктопних стилів */
+  }
+
+  .userProfile {
+    margin-bottom: 25px;
+  }
+
+  .profileImage {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+  }
+
+  .userLogin {
+    font-size: 1.4rem;
+  }
+
+  .userEmail {
+    font-size: 0.95rem;
+  }
+
+  .userNavigation {
+    gap: 12px;
+  }
+
+  .userNavigation > * { /* Застосовуємо flex-basis для планшетів */
+    flex: 0 0 calc(50% - 6px);
+    box-sizing: border-box;
+    text-align: center;
+  }
+}
+
+/* Мобільні телефони (до 767px) */
+@media (max-width: 767px) {
+  .userSection {
+    max-width: 95%;
+    padding: 20px 15px;
+    margin-bottom: 20px;
+    /* ВИДАЛЕНО: box-shadow: none; */
+    /* ВИДАЛЕНО: border: 1px solid #e0e0e0; */
+    /* Фон, тінь, заокруглення тепер успадковуються з десктопних стилів */
+  }
+
+  .userProfile {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .profileImage {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+
+  .userInfo {
+    text-align: left;
+  }
+
+  .userLogin {
+    font-size: 1.3rem;
+    margin-bottom: 3px;
+  }
+
+  .userEmail {
+    font-size: 0.9rem;
+  }
+
+  .userNavigation {
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .userNavigation > * { /* Застосовуємо flex-basis для мобільних (2 в ряд) */
+    flex: 0 0 calc(50% - 5px);
+    box-sizing: border-box;
+    text-align: center;
+  }
+}
+
+/* Дуже маленькі мобільні екрани (до 480px) */
+@media (max-width: 480px) {
+  .userSection {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    /* Фон, тінь, заокруглення успадковуються з десктопних стилів */
+  }
+
+  .userProfile {
+    flex-direction: column; /* На дуже малих екранах повертаємо в стовпчик для профілю */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .profileImage {
+    width: 50px;
+    height: 50px;
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+
+  .userInfo {
+    text-align: center;
+  }
+
+  .userLogin {
+    font-size: 1.1rem;
+  }
+
+  .userEmail {
+    font-size: 0.8rem;
+  }
+
+  .userNavigation {
+    justify-content: center; /* Центруємо кнопки на дуже малих екранах */
+    gap: 8px;
+  }
+
+  .userNavigation > * { /* Застосовуємо flex-basis для дуже малих мобільних (2 в ряд) */
+    flex: 0 0 calc(50% - 4px);
+    box-sizing: border-box;
+    text-align: center;
+  }
 }
