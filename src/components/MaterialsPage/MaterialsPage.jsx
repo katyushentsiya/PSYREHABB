@@ -124,7 +124,7 @@ const MaterialsPage = () => {
     }
   }, []);
 
-  const navigationItems = [{ label: 'Матеріали', to: '/materials' }];
+  const navigationItems = [{ label: 'Матеріали', to: '/library' }];
 
   if (!currentUser) {
     return <p>Завантаження даних користувача...</p>;

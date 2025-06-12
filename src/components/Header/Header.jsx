@@ -39,26 +39,30 @@ const Header = () => {
     }
   };
 
-  const handleLogout = () => {
+  const performLogout = () => { // Renamed original handleLogout to performLogout
     localStorage.removeItem('loggedInUser');
     setIsLoggedIn(false);
     setCurrentUser(null);
     console.log('Вихід з особистого кабінету');
-    navigate('/');
-    closeMobileMenu(); // Закриваємо мобільне меню при виході
+  };
+
+  const handleLogoutButtonClick = () => { // New function to handle logout button click
+    setPendingNavigationPath('/'); // Set target path for logout to home page
+    setIsLogoutConfirmModalOpen(true);
+    closeMobileMenu();
   };
 
   const handleNavigationClick = (event, path) => {
     if (isLoggedIn && path !== '/personal-area') {
       event.preventDefault();
       setPendingNavigationPath(path);
-      setIsLogoutConfirmModalOpen(true); // Виправив помилку у змінній
+      setIsLogoutConfirmModalOpen(true);
     }
     closeMobileMenu(); // Закриваємо мобільне меню при натисканні на посилання
   };
 
   const handleConfirmLogoutAndNavigate = (path) => {
-    handleLogout();
+    performLogout(); // Call the actual logout logic
     setIsLogoutConfirmModalOpen(false);
     setPendingNavigationPath(null);
     navigate(path);
@@ -121,7 +125,7 @@ const Header = () => {
             {/* Мобільні кнопки "Увійти"/"Вийти" - тепер просто кнопки, модалка рендериться окремо */}
             <li className={styles.mobileAuthButtons}>
               {isLoggedIn ? (
-                <Button variant="transparent" onClick={handleLogout}>
+                <Button variant="transparent" onClick={handleLogoutButtonClick}> {/* Changed onClick */}
                   Вийти
                 </Button>
               ) : (
@@ -143,7 +147,7 @@ const Header = () => {
         {/* Ця секція буде прихована на мобільних пристроях через CSS */}
         <div className={styles.rightSection}>
           {isLoggedIn ? (
-            <Button variant="transparent" onClick={handleLogout}>
+            <Button variant="transparent" onClick={handleLogoutButtonClick}> {/* Changed onClick */}
               Вийти
             </Button>
           ) : (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Додаємо Navigate
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom'; // Додаємо Outlet
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -15,9 +15,18 @@ import TestingPage from './components/TestingPage/TestingPage';
 import MaterialsPage from './components/MaterialsPage/MaterialsPage';
 import initialForumStoriesData from './components/ForumPage/forumStoriesData';
 
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';  // Імпортуємо ProtectedRoute
 
 import './App.css';
+
+const ProtectedRoute = () => {
+  const isAuthenticated = !!localStorage.getItem('loggedInUser'); // Перевіряємо наявність користувача в localStorage
+
+  if (!isAuthenticated) {
+    return <Navigate to="/register" replace />; // або на "/"
+  }
+
+  return <Outlet />;
+};
 
 function App() {
   const [forumStories, setForumStories] = useState(initialForumStoriesData);
@@ -31,7 +40,7 @@ function App() {
         comments: 0,
         author: JSON.parse(localStorage.getItem('loggedInUser')) || { login: 'Анонім', profileImage: '/default-user.jpg', email: '' } // Автор з поточного користувача
       },
-      ...prevStories, // Додаємо нову історію на початок
+      ...prevStories,
     ]);
   };
 
@@ -45,7 +54,7 @@ function App() {
             {/* Публічні маршрути */}
             <Route path="/" element={<MainPage />} />
             <Route path="/services" element={<ServicesPage />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} /> 
             <Route path="/register" element={<RegistPage />} />
 
             {/* ЗАХИЩЕНІ МАРШРУТИ - обгортаємо їх у ProtectedRoute */}
@@ -65,10 +74,10 @@ function App() {
 
             {/* Маршрут-заглушка для 404 помилок */}
             <Route path="*" element={
-                <div style={{ textAlign: 'center', padding: '50px' }}>
-                    <h2>404 - Сторінка не знайдена</h2>
-                    <p>Перевірте URL або поверніться на <a href="/PSYREHABB">головну</a>.</p>
-                </div>
+              <div style={{ textAlign: 'center', padding: '50px' }}>
+                <h2>404 - Сторінка не знайдена</h2>
+                <p>Перевірте URL або поверніться на <a href="/PSYREHABB">головну</a>.</p>
+              </div>
             } />
           </Routes>
         </main>

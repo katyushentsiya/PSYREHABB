@@ -2,7 +2,7 @@
 
 .servicesSection {
   background-color: #edb3db29;
-  padding: 60px 20px; /* Десктопний padding */
+  padding: 20px 20px; /* Десктопний padding */
   width: 100%; /* Змінено з 100vw, щоб уникнути горизонтальної прокрутки */
   display: flex;
   justify-content: center;
@@ -112,7 +112,7 @@
 /* Мобільні телефони (до 767px) */
 @media (max-width: 767px) {
   .servicesSection {
-    padding: 40px 15px; /* Зменшений padding для секції */
+    padding: 15px 15px; /* Зменшений padding для секції */
   }
 
   .container {
@@ -159,7 +159,7 @@
 /* Мобільні телефони (дуже маленькі екрани, до 480px) */
 @media (max-width: 480px) {
   .servicesSection {
-    padding: 30px 10px; /* Ще менший padding */
+    padding: 10px 10px; /* Ще менший padding */
   }
 
   .container {

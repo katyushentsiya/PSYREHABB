@@ -5,23 +5,24 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: black;
   width: 100vw;
-  padding: 20px 0; /* Верхній/нижній padding залишаємо для вертикального простору */
+  box-sizing: border-box;
+  padding: 20px 0 10px 0;
+  margin: 0;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 .container {
   max-width: 1180px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 20px; /* Горизонтальний padding для десктопу */
-  flex-direction: row;
-  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 40px;
 }
 
 .leftSection {
@@ -107,7 +108,7 @@
   font-size: 0.9em;
   text-align: center;
   margin-top: 20px;
-  padding: 0 20px; /* Забезпечуємо горизонтальний padding для копірайту */
+  padding: 0; 
 }
 
 
@@ -120,7 +121,7 @@
   .container {
     flex-direction: column;
     align-items: center;
-    padding: 0 10px; /* Зменшений горизонтальний padding для контейнера */
+    padding: 0; /* Зменшений горизонтальний padding для контейнера */
     gap: 15px; /* Зменшений відступ між секціями на мобільних */
   }
 
@@ -174,6 +175,6 @@
   .copyright {
     font-size: 0.75em; /* Ще менший шрифт для копірайту */
     margin-top: 10px;
-    padding: 0 10px; /* Зменшений горизонтальний padding для копірайту */
+    padding: 0; /* Зменшений горизонтальний padding для копірайту */
   }
 }
