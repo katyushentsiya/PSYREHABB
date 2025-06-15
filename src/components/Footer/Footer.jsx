@@ -1,7 +1,5 @@
 import React from 'react';
 import styles from './Footer.module.css';
-import { Link } from 'react-router-dom';
-
 
 const Footer = () => {
   const socialLinks = [
@@ -18,13 +16,11 @@ const Footer = () => {
             <h1>PsyRehab</h1>
           </div>
         </div>
-        <nav className={styles.navigation}>
-          <ul>
-            <li><Link to="/#main-block-section">Головна</Link></li>
-            <li><Link to="/#about-section">Про нас</Link></li>
-            <li><Link to="/#services-section">Послуги</Link></li>
-          </ul>
-        </nav>
+
+        <div className={styles.centerSection}>
+          <p>© {new Date().getFullYear()} PsyRehab. Всі права захищено.</p>
+        </div>
+
         <div className={styles.rightSection}>
           <div className={styles.socialIcons}>
             {socialLinks.map((link, index) => (
@@ -35,18 +31,11 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className={styles.socialLink}
               >
-                <img
-                  src={link.src}
-                  alt={link.alt}
-                  className={styles.socialIcon}
-                />
+                <img src={link.src} alt={link.alt} className={styles.socialIcon} />
               </a>
             ))}
           </div>
         </div>
-      </div>
-      <div className={styles.copyright}>
-          &copy; {new Date().getFullYear()} PsyRehab. Всі права захищено.
       </div>
     </footer>
   );

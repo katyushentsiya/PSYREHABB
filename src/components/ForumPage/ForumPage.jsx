@@ -9,7 +9,6 @@ const ForumPage = ({ forumStories }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [stories, setStories] = useState([]);
 
-  // Ініціалізуємо лайки: початкові з даних + лайки користувачів
   const [likes, setLikes] = useState(() => {
     const initialLikesData = {};
     forumStories.forEach(story => {
@@ -19,21 +18,16 @@ const ForumPage = ({ forumStories }) => {
     const storedUserLikes = JSON.parse(localStorage.getItem('userLikesCounts')) || {};
     const mergedLikes = { ...initialLikesData }; // Копіюємо початкові лайки
 
-    // Додаємо лайки, які поставили користувачі, до початкових
-    // Це забезпечить коректне відображення при перезавантаженні
     for (const storyId in storedUserLikes) {
-        // Якщо історія вже має початкові лайки, додаємо до них лайки користувачів.
-        // Якщо ні, просто встановлюємо кількість лайків користувачів.
         mergedLikes[storyId] = (mergedLikes[storyId] || 0) + storedUserLikes[storyId];
     }
     return mergedLikes;
   });
 
-  // Стан для відстеження, які історії поточний користувач лайкнув
   const [userLikedStories, setUserLikedStories] = useState(() => {
     const storedUserLikedState = JSON.parse(localStorage.getItem('userLikedStoriesState')) || {};
     const currentLoggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))?.login || 'anonymous';
-    // Завантажуємо стан лайків саме для поточного користувача
+
     return storedUserLikedState[currentLoggedInUser] || {};
   });
 
@@ -81,7 +75,6 @@ const ForumPage = ({ forumStories }) => {
     setStories(combined);
   }, [forumStories, navigate]);
 
-  // Зберігаємо стан лайків користувача (яку історію лайкнув/відлайкнув)
   useEffect(() => {
     if (currentUser) {
         const currentLoggedInUser = currentUser.login || 'anonymous';
@@ -91,18 +84,14 @@ const ForumPage = ({ forumStories }) => {
     }
   }, [userLikedStories, currentUser]);
 
-  // Зберігаємо змінені кількості лайків (які відрізняються від initialLikes)
-  // Цей useEffect буде запускатись після зміни 'likes'
   useEffect(() => {
     const userLikesCountsToSave = {};
     forumStories.forEach(story => {
-        // Ми зберігаємо різницю між поточними лайками та початковими лайками з forumStoriesData.
-        // Це дозволяє нам відстежувати ЛИШЕ лайки, додані користувачами.
         const initialCount = story.initialLikes || 0;
         const currentCount = likes[story.id] || 0;
         const userAddedCount = currentCount - initialCount;
 
-        if (userAddedCount !== 0) { // Зберігаємо тільки якщо є різниця
+        if (userAddedCount !== 0) { 
             userLikesCountsToSave[story.id] = userAddedCount;
         }
     });
@@ -120,24 +109,23 @@ const ForumPage = ({ forumStories }) => {
     setSelectedTopic(topic === 'Всі' ? null : topic);
   };
 
-  // Оновлена функція handleLike для перемикання лайка
   const handleLike = storyId => {
     if (!currentUser) {
         alert('Будь ласка, увійдіть, щоб поставити лайк.');
-        return; // Забороняємо лайкати, якщо користувач не увійшов
+        return; 
     }
 
     const hasLiked = userLikedStories[storyId];
 
     if (hasLiked) {
-      // Якщо користувач вже лайкнув - відлайкуємо
+
       setLikes(prev => ({
         ...prev,
-        [storyId]: Math.max(0, (prev[storyId] || 0) - 1) // Зменшуємо, але не менше 0
+        [storyId]: Math.max(0, (prev[storyId] || 0) - 1) 
       }));
       setUserLikedStories(prev => ({
         ...prev,
-        [storyId]: false // Позначаємо, що користувач відлайкував
+        [storyId]: false 
       }));
     } else {
       // Якщо користувач ще не лайкнув - лайкаємо

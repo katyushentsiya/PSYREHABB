@@ -1,12 +1,11 @@
-/* src/components/DiaryEmotionsPage/DiaryEmotionsPage.module.css */
+
 .diaryEmotionsContainer {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Центруємо секції по горизонталі */
-  padding-bottom: 40px; /* Додамо трохи відступу знизу */
+  align-items: center;
+  padding-bottom: 40px;
 }
 
-/* Стилі для першої секції - Головний екран */
 .heroSection {
   position: relative;
   display: flex;
@@ -15,9 +14,9 @@
   align-items: center;
   text-align: center;
   padding: 80px 20px;
-  color: #000000; /* Колір тексту на фоні */
+  color: #000000;
   width: 100vw;
-  margin-bottom: 40px; /* Відступ між секціями */
+  margin-bottom: 40px;
 }
 
 .heroTitle {
@@ -37,29 +36,24 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/userProfileImage.jpg'); /* Замініть шлях на ваше зображення */
+  background-image: url('/userProfileImage.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.4;
   z-index: -1;
 }
 
-/* Зміни для розміщення форми та тем у стовпчик, якщо вони не повинні бути поруч */
 .diaryFormSection {
   width: 100%;
   max-width: 900px;
   padding: 20px;
   border-radius: 5px;
   margin-top: 30px;
-  /* display: flex;  Видаляємо flex, щоб вони розташовувалися один під одним */
-  /* gap: 20px; */
-  /* align-items: flex-start; */
 }
 
 .diaryForm {
   display: flex;
   flex-direction: column;
-  /* flex: 2; */ /* Видаляємо flex */
 }
 
 .formGroup {
@@ -88,17 +82,16 @@
 
 .topics {
   display: flex;
-  flex-wrap: wrap; /* Дозволяємо переносити на наступний рядок */
-  gap: 10px; /* Відступ між тематиками */
-  margin-top: 15px; /* Вирівнюємо початок списку тем */
-  justify-content: flex-start; /* Вирівнюємо по лівому краю */
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: flex-start;
 }
 
 .topicOption {
   display: flex;
   align-items: center;
-  /* margin-bottom: 10px; */ /* Замінено на gap у .topics */
-  background-color: #f0f0f0; /* Легкий фон для опцій */
+  background-color: #f0f0f0;
   padding: 8px 15px;
   border-radius: 20px;
   cursor: pointer;
@@ -115,12 +108,11 @@
 }
 
 .topicOption label {
-  font-weight: normal; /* Прибираємо жирність, якщо вона була */
+  font-weight: normal;
   cursor: pointer;
-  margin-bottom: 0; /* Прибираємо зайвий margin */
+  margin-bottom: 0;
 }
 
-/* Додайте ці стилі для стилізації кнопки, якщо вона не має стилю за замовчуванням з вашого Button компонента */
 .diaryForm button[type="submit"] {
   margin-top: 20px;
   padding: 12px 30px;
@@ -128,7 +120,6 @@
   border-radius: 8px;
 }
 
-/* Планшети (до 1024px) */
 @media (max-width: 1024px) {
   .diaryEmotionsContainer {
     padding-bottom: 30px;
@@ -137,7 +128,7 @@
   .heroSection {
     padding: 60px 20px;
     margin-bottom: 30px;
-    max-width: 760px; /* Зменшуємо max-width для планшетів */
+    max-width: 760px; 
   }
 
   .heroTitle {
@@ -151,44 +142,44 @@
   }
 
   .diaryFormSection {
-    max-width: 760px; /* Зменшуємо max-width для планшетів */
-    padding: 15px; /* Зменшуємо padding */
+    max-width: 760px; 
+    padding: 15px; 
     margin-top: 25px;
   }
 
   .formGroup {
-    margin-bottom: 15px; /* Зменшуємо відступ */
+    margin-bottom: 15px;
   }
 
   .label {
-    font-size: 0.95rem; /* Зменшуємо шрифт */
+    font-size: 0.95rem;
     margin-bottom: 4px;
   }
 
   .input,
   .textarea {
-    padding: 8px; /* Зменшуємо padding */
-    font-size: 0.95rem; /* Зменшуємо шрифт */
+    padding: 8px;
+    font-size: 0.95rem;
   }
 
   .textarea {
-    min-height: 120px; /* Зменшуємо мінімальну висоту */
+    min-height: 120px;
   }
 
   .topics {
-    gap: 8px; /* Зменшуємо відступ */
+    gap: 8px;
     margin-top: 12px;
   }
 
   .topicOption {
-    padding: 7px 12px; /* Зменшуємо padding */
-    font-size: 0.95rem; /* Зменшуємо шрифт */
+    padding: 7px 12px;
+    font-size: 0.95rem;
   }
 
   .topicOption input[type="radio"] {
-    width: 16px; /* Зменшуємо розмір радіо-баттона */
+    width: 16px;
     height: 16px;
-    margin-right: 6px; /* Зменшуємо відступ */
+    margin-right: 6px;
   }
 
   .diaryForm button[type="submit"] {
@@ -198,7 +189,6 @@
   }
 }
 
-/* Мобільні телефони (до 767px) */
 @media (max-width: 767px) {
   .diaryEmotionsContainer {
     padding-bottom: 20px;
@@ -208,7 +198,7 @@
     padding: 40px 15px;
     margin-bottom: 20px;
     width: 100%;
-    max-width: none; /* Знімаємо обмеження max-width */
+    max-width: none;
   }
 
   .heroTitle {
@@ -222,46 +212,46 @@
   }
 
   .diaryFormSection {
-    max-width: 95%; /* Займаємо майже всю ширину */
-    padding: 12px; /* Ще менший padding */
+    max-width: 95%;
+    padding: 12px;
     margin-top: 20px;
   }
 
   .formGroup {
-    margin-bottom: 12px; /* Ще менший відступ */
+    margin-bottom: 12px;
   }
 
   .label {
-    font-size: 0.9rem; /* Ще менший шрифт */
+    font-size: 0.9rem;
     margin-bottom: 3px;
   }
 
   .input,
   .textarea {
-    padding: 7px; /* Ще менший padding */
-    font-size: 0.9rem; /* Ще менший шрифт */
+    padding: 7px;
+    font-size: 0.9rem;
   }
 
   .textarea {
-    min-height: 100px; /* Ще менша мінімальна висота */
+    min-height: 100px;
   }
 
   .topics {
-    gap: 6px; /* Ще менший відступ */
+    gap: 6px;
     margin-top: 10px;
-    justify-content: center; /* Центруємо теми на мобільних */
+    justify-content: center;
   }
 
   .topicOption {
-    padding: 6px 10px; /* Ще менший padding */
-    font-size: 0.85rem; /* Ще менший шрифт */
-    border-radius: 15px; /* Трохи менш заокруглені кути */
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border-radius: 15px;
   }
 
   .topicOption input[type="radio"] {
-    width: 15px; /* Ще менший розмір радіо-баттона */
+    width: 15px;
     height: 15px;
-    margin-right: 5px; /* Ще менший відступ */
+    margin-right: 5px;
   }
 
   .diaryForm button[type="submit"] {
@@ -271,7 +261,6 @@
   }
 }
 
-/* Дуже маленькі мобільні екрани (до 480px) */
 @media (max-width: 480px) {
   .diaryEmotionsContainer {
     padding-bottom: 15px;
@@ -291,44 +280,44 @@
   }
 
   .diaryFormSection {
-    max-width: 98%; /* Трохи більше, щоб уникнути занадто вузької форми */
-    padding: 10px; /* Мінімальний padding */
+    max-width: 98%;
+    padding: 10px;
     margin-top: 15px;
   }
 
   .formGroup {
-    margin-bottom: 10px; /* Мінімальний відступ */
+    margin-bottom: 10px;
   }
 
   .label {
-    font-size: 0.85rem; /* Мінімальний шрифт */
+    font-size: 0.85rem;
   }
 
   .input,
   .textarea {
-    padding: 6px; /* Мінімальний padding */
-    font-size: 0.85rem; /* Мінімальний шрифт */
+    padding: 6px;
+    font-size: 0.85rem;
   }
 
   .textarea {
-    min-height: 80px; /* Мінімальна висота */
+    min-height: 80px;
   }
 
   .topics {
-    gap: 5px; /* Мінімальний відступ */
+    gap: 5px;
     margin-top: 8px;
   }
 
   .topicOption {
-    padding: 5px 8px; /* Мінімальний padding */
-    font-size: 0.8rem; /* Мінімальний шрифт */
-    border-radius: 12px; /* Ще менш заокруглені кути */
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    border-radius: 12px;
   }
 
   .topicOption input[type="radio"] {
-    width: 14px; /* Мінімальний розмір радіо-баттона */
+    width: 14px;
     height: 14px;
-    margin-right: 4px; /* Мінімальний відступ */
+    margin-right: 4px;
   }
 
   .diaryForm button[type="submit"] {

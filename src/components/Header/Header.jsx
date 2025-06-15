@@ -13,13 +13,13 @@ const Header = () => {
   const [isLogoutConfirmModalOpen, setIsLogoutConfirmModalOpen] = useState(false);
   const [pendingNavigationPath, setPendingNavigationPath] = useState(null);
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Стан для мобільного меню
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); 
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    // Примусовий вихід користувача при кожному завантаженні сторінки
+
     localStorage.removeItem('loggedInUser');
     setIsLoggedIn(false);
     setCurrentUser(null);
@@ -27,7 +27,7 @@ const Header = () => {
 
   const handleLoginButtonClick = () => {
     setIsLoginFormVisible(true);
-    closeMobileMenu(); // Закриваємо мобільне меню при відкритті форми логіну
+    closeMobileMenu(); 
   };
 
   const handleCloseLoginForm = () => {
@@ -39,15 +39,15 @@ const Header = () => {
     }
   };
 
-  const performLogout = () => { // Renamed original handleLogout to performLogout
+  const performLogout = () => { 
     localStorage.removeItem('loggedInUser');
     setIsLoggedIn(false);
     setCurrentUser(null);
     console.log('Вихід з особистого кабінету');
   };
 
-  const handleLogoutButtonClick = () => { // New function to handle logout button click
-    setPendingNavigationPath('/'); // Set target path for logout to home page
+  const handleLogoutButtonClick = () => { 
+    setPendingNavigationPath('/'); 
     setIsLogoutConfirmModalOpen(true);
     closeMobileMenu();
   };
@@ -58,15 +58,15 @@ const Header = () => {
       setPendingNavigationPath(path);
       setIsLogoutConfirmModalOpen(true);
     }
-    closeMobileMenu(); // Закриваємо мобільне меню при натисканні на посилання
+    closeMobileMenu(); 
   };
 
   const handleConfirmLogoutAndNavigate = (path) => {
-    performLogout(); // Call the actual logout logic
+    performLogout(); 
     setIsLogoutConfirmModalOpen(false);
     setPendingNavigationPath(null);
     navigate(path);
-    closeMobileMenu(); // Закриваємо мобільне меню після підтвердження виходу та навігації
+    closeMobileMenu(); 
   };
 
   const handleCancelLogout = () => {
@@ -76,7 +76,7 @@ const Header = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    // При відкритті бургер-меню, переконайтеся, що форма входу закрита
+
     if (isLoginFormVisible) {
       setIsLoginFormVisible(false);
     }
@@ -88,7 +88,6 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      {/* headerWrapper тепер керує макетом та центрівкою на десктопах */}
       <div className={styles.headerWrapper}>
         <div className={styles.leftSection}>
           <div className={styles.logo}>
@@ -98,8 +97,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Навігація - її видимість та розташування керуватимуться CSS та isMobileMenuOpen */}
-        {/* Клас mobileOpen додається, коли меню відкрито, щоб CSS міг його стилізувати */}
         <nav className={`${styles.navigation} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}>
           <ul>
             <li>
@@ -122,10 +119,9 @@ const Header = () => {
               <li><Link to="/personal-area" onClick={closeMobileMenu}>Особистий кабінет</Link></li>
             )}
 
-            {/* Мобільні кнопки "Увійти"/"Вийти" - тепер просто кнопки, модалка рендериться окремо */}
             <li className={styles.mobileAuthButtons}>
               {isLoggedIn ? (
-                <Button variant="transparent" onClick={handleLogoutButtonClick}> {/* Changed onClick */}
+                <Button variant="transparent" onClick={handleLogoutButtonClick}> 
                   Вийти
                 </Button>
               ) : (
@@ -135,7 +131,7 @@ const Header = () => {
               )}
             </li>
           </ul>
-          {/* Кнопка "хрестик" для закриття, якщо меню відкрито на мобільному */}
+       
           {isMobileMenuOpen && (
             <div className={styles.closeMobileMenu} onClick={toggleMobileMenu}>
               &times;
@@ -143,8 +139,6 @@ const Header = () => {
           )}
         </nav>
 
-        {/* Права секція для ДЕСКТОПНИХ кнопок "Увійти"/"Вийти" */}
-        {/* Ця секція буде прихована на мобільних пристроях через CSS */}
         <div className={styles.rightSection}>
           {isLoggedIn ? (
             <Button variant="transparent" onClick={handleLogoutButtonClick}> {/* Changed onClick */}

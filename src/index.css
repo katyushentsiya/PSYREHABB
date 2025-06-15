@@ -1,6 +1,6 @@
 html, body {
   margin: 0;
   padding: 0;
-  width: 100%; /* Переконайтеся, що вони не виходять за межі */
-  overflow-x: hidden; /* <--- Додати це */
+  width: 100%; 
+  overflow-x: hidden; 
 }

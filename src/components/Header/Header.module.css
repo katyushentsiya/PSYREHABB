@@ -86,17 +86,17 @@
 
 .rightSection {
   flex-shrink: 0;
-  display: flex; /* Показано на десктопах */
+  display: flex; 
   align-items: center;
   margin-left: 20px;
 }
 
 .mobileAuthButtons {
-  display: none; /* Приховано на десктопах */
+  display: none; 
 }
 
 .hamburgerMenu {
-  display: none; /* Приховано на десктопах */
+  display: none;
   font-size: 30px;
   cursor: pointer;
   color: black;
@@ -104,21 +104,17 @@
   margin-left: 20px;
 }
 
-/* Кнопка закриття мобільного меню (хрестик) */
 .closeMobileMenu {
-  display: none; /* Приховано за замовчуванням */
-  /* Оновлені стилі для розміру та позиції */
-  font-size: 45px; /* Збільшений розмір хрестика */
+  display: none; 
+  font-size: 45px; 
   position: absolute;
-  top: 15px; /* Трохи вище, щоб не заважав бургеру */
-  right: 25px; /* Позиціонування від правого краю */
+  top: 15px; 
+  right: 25px; 
   cursor: pointer;
   color: #333;
-  z-index: 21; /* Перекриває всі інші елементи */
+  z-index: 21; 
 }
 
-
-/* --- Стилі для мобільних пристроїв --- */
 @media (max-width: 768px) {
   .header {
     height: 60px;
@@ -170,19 +166,19 @@
   }
 
   .rightSection {
-    display: none; /* Приховуємо десктопні кнопки */
+    display: none; 
   }
 
   .hamburgerMenu {
-    display: block; /* Показати гамбургер на мобільних */
+    display: block; 
   }
 
   .closeMobileMenu {
-    display: block; /* Показати хрестик на мобільних */
+    display: block; 
   }
 
   .mobileAuthButtons {
-    display: block; /* Показати мобільні кнопки увійти/вийти */
+    display: block; 
     margin-top: 40px;
   }
 

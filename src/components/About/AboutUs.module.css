@@ -1,5 +1,3 @@
-/* AboutUs.module.css */
-
 .aboutUsSection {
   padding: 20px 20px; 
   box-sizing: border-box; 
@@ -33,7 +31,6 @@
   word-break: break-word; 
 }
 
-/* Планшети (від 768px до 1024px) */
 @media (max-width: 1024px) {
   .aboutUsSection {
     padding: 15px 15px; 
@@ -56,7 +53,6 @@
   }
 }
 
-/* Мобільні телефони (до 767px) */
 @media (max-width: 767px) {
   .aboutUsSection {
     padding: 10px 10px; 
@@ -80,7 +76,6 @@
   }
 }
 
-/* Мобільні телефони (дуже маленькі екрани, до 480px) */
 @media (max-width: 480px) {
   .aboutUsSection {
     padding: 5px 5px; 
