@@ -12,6 +12,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.leftSection}>
+          
           <div className={styles.logo}>
             <h1>PsyRehab</h1>
           </div>
