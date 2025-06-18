@@ -145,7 +145,7 @@ const Header = () => {
               Вийти
             </Button>
           ) : (
-            // Тут теж просто кнопка
+
             <Button variant="transparent" onClick={handleLoginButtonClick}>
               Увійти
             </Button>

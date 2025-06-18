@@ -3,7 +3,7 @@ import styles from './LogoutConfirmModal.module.css';
 import Button from '../Button/Button';
 
 const LogoutConfirmModal = ({ isOpen, onConfirm, onCancel, targetPath }) => {
-  if (!isOpen) return null; // Якщо модальне вікно не відкрите, нічого не рендеримо
+  if (!isOpen) return null; 
 
   return (
     <div className={styles.modalOverlay}>

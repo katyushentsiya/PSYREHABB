@@ -16,7 +16,7 @@ const ForumPage = ({ forumStories }) => {
     });
 
     const storedUserLikes = JSON.parse(localStorage.getItem('userLikesCounts')) || {};
-    const mergedLikes = { ...initialLikesData }; // Копіюємо початкові лайки
+    const mergedLikes = { ...initialLikesData }; 
 
     for (const storyId in storedUserLikes) {
         mergedLikes[storyId] = (mergedLikes[storyId] || 0) + storedUserLikes[storyId];
@@ -128,14 +128,14 @@ const ForumPage = ({ forumStories }) => {
         [storyId]: false 
       }));
     } else {
-      // Якщо користувач ще не лайкнув - лайкаємо
+
       setLikes(prev => ({
         ...prev,
         [storyId]: (prev[storyId] || 0) + 1
       }));
       setUserLikedStories(prev => ({
         ...prev,
-        [storyId]: true // Позначаємо, що користувач лайкнув
+        [storyId]: true 
       }));
     }
   };
@@ -286,7 +286,7 @@ const ForumPage = ({ forumStories }) => {
                     <Button
                         variant="icon"
                         onClick={() => handleLike(story.id)}
-                        // Стиль для зміни кольору сердечка
+  
                         style={{ color: userLikedStories[story.id] ? '#FF0000' : '#888' }} // Червоний або сірий
                     >
                       ❤️ {/* Смайлик сердечка */}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './RegistPage.module.css';
 import Button from '../Button/Button';
-import LoginForm from '../LoginForm/LoginForm'; // Імпортуємо форму входу
+import LoginForm from '../LoginForm/LoginForm'; 
 
 const RegistPage = () => {
   const [login, setLogin] = useState('');
@@ -10,7 +10,7 @@ const RegistPage = () => {
   const [profileImage, setProfileImage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [showLogin, setShowLogin] = useState(false); // Додано
+  const [showLogin, setShowLogin] = useState(false); 
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -71,7 +71,7 @@ const handleSubmit = (event) => {
       <h1>Реєстрація</h1>
       {!showLogin ? (
         <form className={styles.form} onSubmit={handleSubmit}>
-          {/* Поля форми */}
+
           <div className={styles.formGroup}>
             <label htmlFor="login">Логін:</label>
             <input type="text" id="login" className={styles.input} value={login} onChange={(e) => setLogin(e.target.value)} />

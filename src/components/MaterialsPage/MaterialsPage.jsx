@@ -19,7 +19,7 @@ const predefinedMaterials = [
     title: 'Як повернути внутрішній спокій',
     url: 'https://youtu.be/6csLkuAOjaM?si=bwtjR7phzZdVklcn',
     category: 'Повторне переживання',
-    recommendedFor: [3,4], // Для тих, кого майже не вплинуло
+    recommendedFor: [3,4], 
   },
   {
     title: 'Основні техніки когнітивно-поведінкової терапії',
@@ -93,7 +93,7 @@ const predefinedMaterials = [
 
 const MaterialsPage = () => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [lastTestScore, setLastTestScore] = useState(null); // Новий стан для зберігання результату тесту
+  const [lastTestScore, setLastTestScore] = useState(null); 
 
   useEffect(() => {
     const storedUser = localStorage.getItem('loggedInUser');
@@ -111,14 +111,13 @@ const MaterialsPage = () => {
       }
     }
 
-    // Зчитуємо останній результат тесту з localStorage
     const storedScore = localStorage.getItem('lastTestScore');
     if (storedScore) {
       try {
         setLastTestScore(JSON.parse(storedScore));
       } catch (err) {
         console.error('Помилка при парсингу lastTestScore з localStorage:', err);
-        localStorage.removeItem('lastTestScore'); // Очищаємо, якщо пошкоджено
+        localStorage.removeItem('lastTestScore'); 
         setLastTestScore(null);
       }
     }
@@ -130,14 +129,12 @@ const MaterialsPage = () => {
     return <p>Завантаження даних користувача...</p>;
   }
 
-  // Фільтрація рекомендованих матеріалів на основі lastTestScore
   const recommendedMaterials = lastTestScore !== null
     ? predefinedMaterials.filter(material =>
         material.recommendedFor && material.recommendedFor.includes(lastTestScore)
       )
-    : []; // Якщо оцінки немає, рекомендованих матеріалів немає
+    : []; 
 
-  // Виключаємо рекомендовані матеріали з основного списку
   const otherMaterials = predefinedMaterials.filter(material =>
     !recommendedMaterials.includes(material)
   );
@@ -184,7 +181,7 @@ const MaterialsPage = () => {
         {/* Можна змінити заголовок або прибрати, якщо розділ "Рекомендовано" є основним */}
         <h2>Усі матеріали</h2>
         {categories.map((category) => {
-          // Фільтруємо з "otherMaterials"
+
           const filtered = otherMaterials.filter((m) => m.category === category);
           if (filtered.length === 0) return null;
 

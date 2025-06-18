@@ -1,6 +1,3 @@
-/* materialsPage.module.css */
-
-/* Залишаємо існуючі загальні стилі без змін, якщо вони вже працюють */
 .materialsContainer {
   display: flex;
   flex-direction: column;
@@ -74,11 +71,10 @@
   box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box; /* Включає padding та border у загальну ширину 900px */
-  margin-left: auto; /* Центрує блок всередині .materialsListSection, якщо він менший за 100% */
+  margin-left: auto; 
   margin-right: auto;
 }
 
-/* Стилі для заголовків категорій (h2 та h3) */
 .categoryBlock h2,
 .categoryBlock h3 {
   font-size: 1.8rem; /* Розмір для головних заголовків (Рекомендовано, Усі матеріали) */
@@ -89,7 +85,6 @@
   text-align: center; /* Центруємо заголовки секцій */
 }
 
-/* Окремі стилі для підзаголовків категорій (Зміни в емоціях і мисленні, Повторне переживання тощо) */
 .categoryBlock h3 {
   font-size: 1.5rem; /* Трохи менший розмір для підкатегорій */
   border-bottom: 1px solid #ff83c167; /* Тонша лінія для підкатегорій */
@@ -103,7 +98,6 @@
   margin-top: 20px; /* Додаємо відступ зверху для списку посилань */
 }
 
-/* Оновлені стилі для окремих елементів матеріалів (посилань) */
 .materialItem {
   margin-bottom: 12px; /* Невеликий відступ між елементами */
   padding: 12px 18px; /* Внутрішній відступ для кожного елемента */
@@ -130,9 +124,6 @@
   text-decoration: none; /* Прибираємо підкреслення при наведенні, оскільки вже є ефект фону */
 }
 
-/* --- Медіа-запити для адаптації --- */
-
-/* Планшети (до 1024px) */
 @media (max-width: 1024px) {
   .materialsContainer {
     padding-bottom: 30px;
