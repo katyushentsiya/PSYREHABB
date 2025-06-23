@@ -1,4 +1,4 @@
-.loginFormContainer {
+.loginFormContainer { 
   max-width: 1180px;
   margin: 50px auto;
   padding: 80px; 
@@ -103,12 +103,14 @@ label {
 
 @media (max-width: 768px) {
   .loginFormContainer {
-    max-width: 95%; 
-    margin: 20px auto;
-    padding: 30px; 
-    box-shadow: none; 
-    border: none; 
+    max-width: 95%;
+    margin: 50px auto; /* було менше */
+    padding: 60px;     /* збільшили */
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(227, 110, 110, 0.848);
+    min-height: 500px; /* додали */
   }
+}
 
   .loginFormContainer h1 {
     font-size: 1.8em;
@@ -135,13 +137,14 @@ label {
     margin-bottom: 10px;
     padding: 0 5px; 
   }
-}
 
 @media (max-width: 480px) {
   .loginFormContainer {
-    padding: 20px; 
-    margin: 10px auto; 
+    padding: 40px;
+    margin: 40px auto;
+    min-height: 450px;
   }
+}
 
   .loginFormContainer h1 {
     font-size: 1.5em;
@@ -162,4 +165,28 @@ label {
     font-size: 0.8em;
     margin-bottom: 8px;
   }
+  
+
+/* Додано для футера */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 20px;
 }
